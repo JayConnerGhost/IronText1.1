@@ -11,16 +11,16 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
 {
-    public partial class Container : Form
+    public partial class Container : Form,IContainer
     {
-        public Container()
+        public Container(IIdeas ideas, IFiles files, IEditor editor)
         {
             InitializeComponent();
-            Ideas ideas = new Ideas();
+           
             ideas.Show(dockPanel, DockState.DockLeft);
-            Files files = new Files();
+       
             files.Show(dockPanel, DockState.DockRight);
-            Editor editor = new Editor();
+          
             editor.Show(dockPanel, DockState.Document);
         }
     }

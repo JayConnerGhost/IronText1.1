@@ -11,7 +11,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
 {
-    public partial class Files : DockContent
+    public partial class Files : DockContent,IFiles
     {
         public Files()
         {

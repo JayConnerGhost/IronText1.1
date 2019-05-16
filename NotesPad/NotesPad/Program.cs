@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace NotesPad
 {
@@ -14,9 +15,21 @@ namespace NotesPad
         [STAThread]
         static void Main()
         {
+            var dependencyContainer = BuildContainer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Container());
+            var container = dependencyContainer.Resolve<IContainer>();
+            Application.Run((Form)container);
+        }
+
+        private static UnityContainer BuildContainer()
+        {
+           var container=new UnityContainer();
+           container.RegisterType<IIdeas, Ideas>();
+           container.RegisterType<IFiles, Files>();
+           container.RegisterType<IEditor, Editor>();
+           container.RegisterType<IContainer, Container>();
+           return container;
         }
     }
 }

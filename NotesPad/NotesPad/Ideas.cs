@@ -18,7 +18,9 @@ namespace NotesPad
         public Ideas(IIdeasController controller)
         {
             _controller = controller;
-            InitializeComponent();
+           InitializeComponent();
+   
         }
+
     }
 }

@@ -19,6 +19,9 @@ namespace NotesPad
         {
             _controller = controller;
             InitializeComponent();
+          
         }
+
+     
     }
 }

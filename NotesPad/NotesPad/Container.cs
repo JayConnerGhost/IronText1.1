@@ -18,6 +18,7 @@ namespace NotesPad
         public Container(IIdeas ideas, IFiles files, IEditor editor, IMainController controller)
         {
             _controller = controller;
+            _controller.Window = this;
             InitializeComponent();
 
             SetupInitialDocking(ideas,files,editor);
@@ -26,7 +27,7 @@ namespace NotesPad
         private void SetupInitialDocking(IIdeas ideas, IFiles files, IEditor editor)
         {
             dockPanel.Theme = vS2015DarkTheme1;
-
+            
             ideas.Show(dockPanel, DockState.DockLeft);
 
             files.Show(dockPanel, DockState.DockRight);

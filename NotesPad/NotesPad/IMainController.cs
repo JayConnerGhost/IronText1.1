@@ -1,7 +1,8 @@
 ﻿namespace NotesPad
 {
-    public interface IMainController
+    public interface IMainController:IController
     {
-        Container Window { get; set; }
+     
+     
     }
 }

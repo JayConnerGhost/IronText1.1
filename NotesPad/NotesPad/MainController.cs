@@ -15,12 +15,30 @@ namespace NotesPad
             _ideasController = ideasController;
             _filesController = filesController;
             _editorController = editorController;
+            
+        }
+
+        public void Setup()
+        {
             SetupMenu(Window);
         }
 
         private void SetupMenu(Container window)
         {
-           
+            var mnuFile = new ToolStripMenuItem("File");
+            var mnuEdit = new ToolStripMenuItem("Edit");
+            var mnuView = new ToolStripMenuItem("View");
+            var mnuTools = new ToolStripMenuItem("Tools");
+            SetupToolsMenu(mnuTools);
+            window.MenuStrip.Items.Add(mnuFile);
+            window.MenuStrip.Items.Add(mnuEdit);
+            window.MenuStrip.Items.Add(mnuView);
+            window.MenuStrip.Items.Add(mnuTools);
+        }
+
+        private void SetupToolsMenu(ToolStripMenuItem mnuTools)
+        {
+            mnuTools.DropDownItems.Add("Ideas");
         }
     }
 }

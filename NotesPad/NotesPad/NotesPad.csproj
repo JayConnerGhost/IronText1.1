@@ -70,6 +70,7 @@
     <Compile Include="EditorController.cs" />
     <Compile Include="FilesController.cs" />
     <Compile Include="IContainer.cs" />
+    <Compile Include="IController.cs" />
     <Compile Include="Ideas.cs">
       <SubType>Form</SubType>
     </Compile>

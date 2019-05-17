@@ -2,7 +2,7 @@
 
 namespace NotesPad
 {
-    public interface IIdeasController
+    public interface IIdeasController: IController
     {
        
     }

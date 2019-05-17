@@ -17,10 +17,12 @@ namespace NotesPad
 
         public Container(IIdeas ideas, IFiles files, IEditor editor, IMainController controller)
         {
+            InitializeComponent();
             _controller = controller;
             _controller.Window = this;
-            InitializeComponent();
-
+            _controller.Setup();
+       
+            
             SetupInitialDocking(ideas,files,editor);
         }
 

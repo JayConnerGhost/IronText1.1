@@ -25,6 +25,10 @@ namespace NotesPad
         private static UnityContainer BuildContainer()
         {
            var container=new UnityContainer();
+           container.RegisterType<IIdeasController, IdeasController>();
+           container.RegisterType<IFilesController, FilesController>();
+           container.RegisterType<IEditorController, EditorController>();
+           container.RegisterType<IMainController, MainController>();
            container.RegisterType<IIdeas, Ideas>();
            container.RegisterType<IFiles, Files>();
            container.RegisterType<IEditor, Editor>();

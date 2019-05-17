@@ -13,15 +13,27 @@ namespace NotesPad
 {
     public partial class Container : Form,IContainer
     {
-        public Container(IIdeas ideas, IFiles files, IEditor editor)
+        private readonly IMainController _controller;
+
+        public Container(IIdeas ideas, IFiles files, IEditor editor, IMainController controller)
         {
+            _controller = controller;
             InitializeComponent();
-           
-            ideas.Show(dockPanel, DockState.DockLeft);
-       
-            files.Show(dockPanel, DockState.DockRight);
-          
-            editor.Show(dockPanel, DockState.Document);
+
+            SetupInitialDocking(ideas,files,editor);
         }
+
+        private void SetupInitialDocking(IIdeas ideas, IFiles files, IEditor editor)
+        {
+            dockPanel.Theme = vS2015DarkTheme1;
+
+            ideas.Show(dockPanel, DockState.DockLeft);
+
+            files.Show(dockPanel, DockState.DockRight);
+
+            editor.Show(dockPanel, DockState.Document);
+         
+        }
+
     }
 }

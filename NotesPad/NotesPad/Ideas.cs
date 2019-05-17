@@ -13,8 +13,11 @@ namespace NotesPad
 {
     public partial class Ideas : DockContent, IIdeas
     {
-        public Ideas()
+        private readonly IIdeasController _controller;
+
+        public Ideas(IIdeasController controller)
         {
+            _controller = controller;
             InitializeComponent();
         }
     }

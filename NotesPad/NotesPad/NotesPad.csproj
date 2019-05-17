@@ -67,6 +67,8 @@
     <Compile Include="Container.Designer.cs">
       <DependentUpon>Container.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditorController.cs" />
+    <Compile Include="FilesController.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="Ideas.cs">
       <SubType>Form</SubType>
@@ -86,9 +88,15 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
+    <Compile Include="IdeasController.cs" />
     <Compile Include="IEditor.cs" />
+    <Compile Include="IEditorController.cs" />
     <Compile Include="IFiles.cs" />
+    <Compile Include="IFilesController.cs" />
     <Compile Include="IIdeas.cs" />
+    <Compile Include="IIdeasController.cs" />
+    <Compile Include="IMainController.cs" />
+    <Compile Include="MainController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Container.resx">

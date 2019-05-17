@@ -13,8 +13,11 @@ namespace NotesPad
 {
     public partial class Editor : DockContent,IEditor
     {
-        public Editor()
+        private readonly IEditorController _controller;
+
+        public Editor(IEditorController controller)
         {
+            _controller = controller;
             InitializeComponent();
         }
     }

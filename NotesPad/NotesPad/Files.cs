@@ -13,8 +13,11 @@ namespace NotesPad
 {
     public partial class Files : DockContent,IFiles
     {
-        public Files()
+        private readonly IFilesController _controller;
+
+        public Files(IFilesController controller)
         {
+            _controller = controller;
             InitializeComponent();
         }
     }

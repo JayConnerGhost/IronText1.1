@@ -17,12 +17,9 @@ namespace NotesPad
 
         public Editor(IEditorController controller)
         {
-            _controller = controller;
             InitializeComponent();
-          
-          
+            _controller = controller;
+            _controller.Window = this;
         }
-
-      
     }
 }

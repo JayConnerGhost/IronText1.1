@@ -40,10 +40,21 @@ namespace NotesPad
             var mnuView = new ToolStripMenuItem("View");
             var mnuTools = new ToolStripMenuItem("Tools");
             SetupToolsMenu(mnuTools);
+            SetupFileMenu(mnuFile);
             window.MenuStrip.Items.Add(mnuFile);
             window.MenuStrip.Items.Add(mnuEdit);
             window.MenuStrip.Items.Add(mnuView);
             window.MenuStrip.Items.Add(mnuTools);
+        }
+
+        private void SetupFileMenu(ToolStripMenuItem mnuFile)
+        {
+            mnuFile.DropDownItems.Add("New", null, NewFileOnClick);
+        }
+
+        private void NewFileOnClick(object sender, EventArgs e)
+        {
+            _editorController.Show();
         }
 
         private void SetupToolsMenu(ToolStripMenuItem mnuTools)

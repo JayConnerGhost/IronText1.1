@@ -20,6 +20,7 @@ namespace NotesPad
             InitializeComponent();
             _controller = controller;
             _controller.Window = this;
+            _controller.Setup();
         }
     }
 }

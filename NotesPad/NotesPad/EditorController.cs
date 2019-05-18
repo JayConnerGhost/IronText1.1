@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Configuration;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -18,7 +19,13 @@ namespace NotesPad
 
         public void Setup()
         {
-            throw new System.NotImplementedException();
+            BuildRTFControl();
+        }
+
+        private void BuildRTFControl()
+        {
+            var richTextBox = new RichTextBox {Dock = DockStyle.Fill};
+            Window.Controls.Add(richTextBox);
         }
 
         public void Show()

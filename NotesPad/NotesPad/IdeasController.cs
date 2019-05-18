@@ -20,7 +20,6 @@ namespace NotesPad
 
         public void Setup()
         {
-            throw new System.NotImplementedException();
         }
 
         public void Show()

@@ -30,7 +30,7 @@ namespace NotesPad
             
             ideas.Show(dockPanel, DockState.DockLeft);
 
-            files.Show(dockPanel, DockState.DockRight);
+            files.Show(dockPanel, DockState.DockLeft);
 
             editor.Show(dockPanel, DockState.Document);
          

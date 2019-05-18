@@ -17,9 +17,10 @@ namespace NotesPad
 
         public Files(IFilesController controller)
         {
-            _controller = controller;
             InitializeComponent();
-          
+            _controller = controller;
+            _controller.Window = this;
+
         }
 
      

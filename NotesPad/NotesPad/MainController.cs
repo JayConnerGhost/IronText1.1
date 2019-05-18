@@ -49,6 +49,12 @@ namespace NotesPad
         private void SetupToolsMenu(ToolStripMenuItem mnuTools)
         {
             mnuTools.DropDownItems.Add("Ideas",null,IdeasOnClick);
+            mnuTools.DropDownItems.Add("Files",null,FilesOnClick);
+        }
+
+        private void FilesOnClick(object sender, EventArgs e)
+        {
+            _filesController.Show();
         }
 
         private void IdeasOnClick(object sender, EventArgs e)

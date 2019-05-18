@@ -25,6 +25,7 @@ namespace NotesPad
 
         public void Show()
         {
+            //HACK till i have a better way of dealing with this 
             if (this.Window.IsDisposed)
             {
                 this.Window=new Ideas(this);

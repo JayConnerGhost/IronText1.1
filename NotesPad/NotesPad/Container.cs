@@ -11,7 +11,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
 {
-    public partial class Container : Form,IContainer
+    public partial class Container : Form, IContainer
     {
         private readonly IMainController _controller;
 
@@ -20,10 +20,8 @@ namespace NotesPad
             InitializeComponent();
             _controller = controller;
             _controller.Window = this;
+             SetupInitialDocking(ideas,files,editor);
             _controller.Setup();
-       
-            
-            SetupInitialDocking(ideas,files,editor);
         }
 
         private void SetupInitialDocking(IIdeas ideas, IFiles files, IEditor editor)

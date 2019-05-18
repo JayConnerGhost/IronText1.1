@@ -1,8 +1,10 @@
-﻿namespace NotesPad
+﻿using System.Windows.Forms;
+
+namespace NotesPad
 {
-    public interface IMainController:IController
+    public interface IMainController
     {
-     
-     
+        Container Window { get; set; }
+        void Setup();
     }
 }

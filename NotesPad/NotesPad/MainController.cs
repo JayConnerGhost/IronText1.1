@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
 {
@@ -12,14 +14,22 @@ namespace NotesPad
 
         internal MainController(IIdeasController ideasController, IFilesController filesController, IEditorController editorController)
         {
+         
             _ideasController = ideasController;
+          
             _filesController = filesController;
+        
             _editorController = editorController;
-            
+           
+
         }
 
         public void Setup()
         {
+            var dockingArea = Window.dockPanel;
+            _ideasController.DockingArea = dockingArea;
+            _filesController.DockingArea = dockingArea;
+            _editorController.DockingArea = dockingArea;
             SetupMenu(Window);
         }
 
@@ -38,7 +48,12 @@ namespace NotesPad
 
         private void SetupToolsMenu(ToolStripMenuItem mnuTools)
         {
-            mnuTools.DropDownItems.Add("Ideas");
+            mnuTools.DropDownItems.Add("Ideas",null,IdeasOnClick);
+        }
+
+        private void IdeasOnClick(object sender, EventArgs e)
+        {
+            _ideasController.Show();
         }
     }
 }

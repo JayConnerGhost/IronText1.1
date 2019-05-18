@@ -1,8 +1,12 @@
-﻿namespace NotesPad
+﻿using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
+
+namespace NotesPad
 {
     public interface IController
     {
-        Container Window { get; set; }
+        Form Window { get; set; }
+        DockPanel DockingArea { get; set; }
         void Setup();
     }
 }

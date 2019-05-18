@@ -69,7 +69,7 @@
         #endregion
 
         private WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme vS2015DarkTheme1;
-        private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
+        public WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
         internal System.Windows.Forms.MenuStrip MenuStrip;
     }
 }

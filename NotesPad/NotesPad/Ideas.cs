@@ -17,8 +17,10 @@ namespace NotesPad
 
         public Ideas(IIdeasController controller)
         {
+            InitializeComponent();
             _controller = controller;
-           InitializeComponent();
+            _controller.Window = this;
+        
    
         }
 

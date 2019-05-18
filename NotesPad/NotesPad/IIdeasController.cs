@@ -4,6 +4,6 @@ namespace NotesPad
 {
     public interface IIdeasController: IController
     {
-       
+        void Show();
     }
 }

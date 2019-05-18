@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
+using Unity.Lifetime;
 
 namespace NotesPad
 {
@@ -25,14 +26,14 @@ namespace NotesPad
         private static UnityContainer BuildContainer()
         {
            var container=new UnityContainer();
-           container.RegisterType<IIdeasController, IdeasController>();
-           container.RegisterType<IFilesController, FilesController>();
-           container.RegisterType<IEditorController, EditorController>();
-           container.RegisterType<IMainController, MainController>();
-           container.RegisterType<IIdeas, Ideas>();
-           container.RegisterType<IFiles, Files>();
-           container.RegisterType<IEditor, Editor>();
-           container.RegisterType<IContainer, Container>();
+           container.RegisterType<IIdeasController, IdeasController>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IFilesController, FilesController>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IEditorController, EditorController>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IMainController, MainController>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IIdeas, Ideas>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IFiles, Files>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IEditor, Editor>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IContainer, Container>(new ContainerControlledLifetimeManager());
            return container;
         }
     }

@@ -20,6 +20,7 @@ namespace NotesPad
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var container = dependencyContainer.Resolve<IContainer>();
+            container.DependencyContainer = dependencyContainer;
             Application.Run((Form)container);
         }
 
@@ -32,7 +33,7 @@ namespace NotesPad
            container.RegisterType<IMainController, MainController>(new ContainerControlledLifetimeManager());
            container.RegisterType<IIdeas, Ideas>(new ContainerControlledLifetimeManager());
            container.RegisterType<IFiles, Files>(new ContainerControlledLifetimeManager());
-           container.RegisterType<IEditor, Editor>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IEditor, Editor>();
            container.RegisterType<IContainer, Container>(new ContainerControlledLifetimeManager());
            return container;
         }

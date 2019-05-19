@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
@@ -14,6 +15,7 @@ namespace NotesPad
     public partial class Container : Form, IContainer
     {
         private readonly IMainController _controller;
+        private UnityContainer _dependencyContainer;
 
         public Container(IIdeas ideas, IFiles files, IEditor editor, IMainController controller)
         {
@@ -36,5 +38,14 @@ namespace NotesPad
          
         }
 
+        public UnityContainer DependencyContainer
+        {
+            get => _dependencyContainer;
+            set
+            {
+                _dependencyContainer = value;
+                _controller.DependencyContainer = _dependencyContainer;
+            }
+        }
     }
 }

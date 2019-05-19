@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Unity;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
@@ -11,6 +12,7 @@ namespace NotesPad
         private readonly IEditorController _editorController;
 
         public Container Window { get; set; }
+        public UnityContainer DependencyContainer { get; set; }
 
         internal MainController(IIdeasController ideasController, IFilesController filesController, IEditorController editorController)
         {
@@ -54,7 +56,8 @@ namespace NotesPad
 
         private void NewFileOnClick(object sender, EventArgs e)
         {
-            _editorController.Show();
+            var editor = DependencyContainer.Resolve<IEditor>();
+            editor.Show(Window.dockPanel, DockState.Document);
         }
 
         private void SetupToolsMenu(ToolStripMenuItem mnuTools)
@@ -65,7 +68,7 @@ namespace NotesPad
 
         private void FilesOnClick(object sender, EventArgs e)
         {
-            _filesController.Show();
+          _filesController.Show();
         }
 
         private void IdeasOnClick(object sender, EventArgs e)

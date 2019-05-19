@@ -59,7 +59,15 @@ namespace NotesPad
         {
             var activeDocument = Window.dockPanel.ActiveDocument;
             var text =((RichTextBox) ((Editor) activeDocument).ActiveControl);
+            SaveFileDialog fileNameDialog = new SaveFileDialog {AddExtension = true, DefaultExt = ".rtf"};
+            var result=fileNameDialog.ShowDialog();
+            if (result == DialogResult.Cancel || result == DialogResult.Cancel)
+            {
+                return;
+            }
 
+            var path = fileNameDialog.FileName;
+            text.SaveFile(path);
         }
 
         private void NewFileOnClick(object sender, EventArgs e)

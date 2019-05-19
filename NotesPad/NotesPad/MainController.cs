@@ -52,6 +52,14 @@ namespace NotesPad
         private void SetupFileMenu(ToolStripMenuItem mnuFile)
         {
             mnuFile.DropDownItems.Add("New", null, NewFileOnClick);
+            mnuFile.DropDownItems.Add("Save", null, SaveFileOnClick);
+        }
+
+        private void SaveFileOnClick(object sender, EventArgs e)
+        {
+            var activeDocument = Window.dockPanel.ActiveDocument;
+            var text =((RichTextBox) ((Editor) activeDocument).ActiveControl);
+
         }
 
         private void NewFileOnClick(object sender, EventArgs e)

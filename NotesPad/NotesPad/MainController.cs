@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Unity;
 using WeifenLuo.WinFormsUI.Docking;
@@ -59,7 +60,7 @@ namespace NotesPad
         {
             var activeDocument = Window.dockPanel.ActiveDocument;
             var text =((RichTextBox) ((Editor) activeDocument).ActiveControl);
-            SaveFileDialog fileNameDialog = new SaveFileDialog {AddExtension = true, DefaultExt = ".rtf"};
+            SaveFileDialog fileNameDialog = new SaveFileDialog {AddExtension = true, DefaultExt = ".rtf",Filter = "rtf files (*.rtf)|*.rtf|All files (*.*)|*.*" };
             var result=fileNameDialog.ShowDialog();
             if (result == DialogResult.Cancel || result == DialogResult.Cancel)
             {
@@ -68,6 +69,9 @@ namespace NotesPad
 
             var path = fileNameDialog.FileName;
             text.SaveFile(path);
+            var name = (new FileInfo(path)).Name;
+           
+            ((Form) activeDocument).Text = name;
         }
 
         private void NewFileOnClick(object sender, EventArgs e)

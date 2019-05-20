@@ -22,5 +22,7 @@ namespace NotesPad
             _controller.Window = this;
             _controller.Setup();
         }
+
+        public IEditorController Controller => _controller;
     }
 }

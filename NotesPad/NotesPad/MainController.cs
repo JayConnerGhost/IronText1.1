@@ -84,6 +84,14 @@ namespace NotesPad
         {
             mnuTools.DropDownItems.Add("Ideas",null,IdeasOnClick);
             mnuTools.DropDownItems.Add("Files",null,FilesOnClick);
+            mnuTools.DropDownItems.Add("Spelling",null,SpellingOnClick);
+        }
+
+        private void SpellingOnClick(object sender, EventArgs e)
+        {
+            var activeDocument = Window.dockPanel.ActiveDocument;
+            var activeEditor = ((Editor) activeDocument);
+            activeEditor.Controller.SpellCheck();
         }
 
         private void FilesOnClick(object sender, EventArgs e)

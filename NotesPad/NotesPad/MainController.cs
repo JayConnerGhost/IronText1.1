@@ -58,7 +58,6 @@ namespace NotesPad
 
         private void SaveFileOnClick(object sender, EventArgs e)
         {
-            //bug here to explore 
             var activeDocument = Window.dockPanel.ActiveDocument;
             var activeController = ((IEditor) activeDocument).Controller;
             activeController.Save();

@@ -29,7 +29,7 @@ namespace NotesPad
            var container=new UnityContainer();
            container.RegisterType<IIdeasController, IdeasController>(new ContainerControlledLifetimeManager());
            container.RegisterType<IFilesController, FilesController>(new ContainerControlledLifetimeManager());
-           container.RegisterType<IEditorController, EditorController>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IEditorController, EditorController>();
            container.RegisterType<IMainController, MainController>(new ContainerControlledLifetimeManager());
            container.RegisterType<IIdeas, Ideas>(new ContainerControlledLifetimeManager());
            container.RegisterType<IFiles, Files>(new ContainerControlledLifetimeManager());

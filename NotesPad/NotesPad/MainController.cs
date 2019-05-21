@@ -52,12 +52,13 @@ namespace NotesPad
 
         private void SetupFileMenu(ToolStripMenuItem mnuFile)
         {
-            mnuFile.DropDownItems.Add("New", null, NewFileOnClick);
-            mnuFile.DropDownItems.Add("Save", null, SaveFileOnClick);
+            mnuFile.DropDownItems.Add(new ToolStripMenuItem("New", null, NewFileOnClick,Keys.Control|Keys.N));
+            mnuFile.DropDownItems.Add(new ToolStripMenuItem("Save", null, SaveFileOnClick, Keys.Control | Keys.S));
         }
 
         private void SaveFileOnClick(object sender, EventArgs e)
         {
+          
             var activeDocument = Window.dockPanel.ActiveDocument;
             var activeController = ((IEditor) activeDocument).Controller;
             activeController.Save();
@@ -71,9 +72,9 @@ namespace NotesPad
 
         private void SetupToolsMenu(ToolStripMenuItem mnuTools)
         {
-            mnuTools.DropDownItems.Add("Ideas",null,IdeasOnClick);
-            mnuTools.DropDownItems.Add("Files",null,FilesOnClick);
-            mnuTools.DropDownItems.Add("Spelling",null,SpellingOnClick);
+            mnuTools.DropDownItems.Add(new ToolStripMenuItem("Ideas",null,IdeasOnClick,Keys.Alt | Keys.I));
+            mnuTools.DropDownItems.Add(new ToolStripMenuItem("Files",null,FilesOnClick,Keys.Alt|Keys.F));
+            mnuTools.DropDownItems.Add(new ToolStripMenuItem("Spelling",null,SpellingOnClick,Keys.Alt | Keys.S));
         }
 
         private void SpellingOnClick(object sender, EventArgs e)

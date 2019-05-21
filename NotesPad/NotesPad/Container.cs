@@ -29,6 +29,7 @@ namespace NotesPad
         private void SetupInitialDocking(IIdeas ideas, IFiles files, IEditor editor)
         {
             dockPanel.Theme = vS2015DarkTheme1;
+         
             
             ideas.Show(dockPanel, DockState.DockLeft);
 

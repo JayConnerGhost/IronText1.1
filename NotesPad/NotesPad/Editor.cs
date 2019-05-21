@@ -21,6 +21,7 @@ namespace NotesPad
             _controller = controller;
             _controller.Window = this;
             _controller.Setup();
+            this.DockAreas = DockAreas.Document;
         }
 
         public IEditorController Controller => _controller;

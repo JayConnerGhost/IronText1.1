@@ -59,19 +59,8 @@ namespace NotesPad
         private void SaveFileOnClick(object sender, EventArgs e)
         {
             var activeDocument = Window.dockPanel.ActiveDocument;
-            var text =((RichTextBox) ((Editor) activeDocument).ActiveControl);
-            SaveFileDialog fileNameDialog = new SaveFileDialog {AddExtension = true, DefaultExt = ".rtf",Filter = "rtf files (*.rtf)|*.rtf|All files (*.*)|*.*" };
-            var result=fileNameDialog.ShowDialog();
-            if (result == DialogResult.Cancel || result == DialogResult.Cancel)
-            {
-                return;
-            }
-
-            var path = fileNameDialog.FileName;
-            text.SaveFile(path);
-            var name = (new FileInfo(path)).Name;
-           
-            ((Form) activeDocument).Text = name;
+            var activeController = ((IEditor) activeDocument).Controller;
+            activeController.Save();
         }
 
         private void NewFileOnClick(object sender, EventArgs e)

@@ -5,5 +5,6 @@ namespace NotesPad
     public interface IEditor
     {
         void Show(DockPanel dockPanel, DockState dockState);
+        IEditorController Controller { get; }
     }
 }

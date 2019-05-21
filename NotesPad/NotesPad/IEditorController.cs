@@ -6,5 +6,6 @@ namespace NotesPad
     {
         void Show();
         void SpellCheck();
+        void Save();
     }
 }

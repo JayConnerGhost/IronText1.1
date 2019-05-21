@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Windows.Forms;
 using NetSpell.SpellChecker;
 using WeifenLuo.WinFormsUI.Docking;
@@ -44,10 +45,27 @@ namespace NotesPad
 
         public void SpellCheck()
         {
-            //Work to do here to enable netspell
             SpellChecker.Text = GetSelectedTextControl().Text;
             SpellChecker.SpellCheck();
         }
+
+        public void Save()
+        {
+            var text = ((RichTextBox)((Editor)Window).ActiveControl);
+            SaveFileDialog fileNameDialog = new SaveFileDialog { AddExtension = true, DefaultExt = ".rtf", Filter = "rtf files (*.rtf)|*.rtf|All files (*.*)|*.*" };
+            var result = fileNameDialog.ShowDialog();
+            if (result == DialogResult.Cancel || result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            var path = fileNameDialog.FileName;
+            text.SaveFile(path);
+            var name = (new FileInfo(path)).Name;
+
+            ((Form)Window).Text = name;
+        }
+
         private void AddSpellingSupport()
         {
             //http://www.loresoft.com/The-NetSpell-project

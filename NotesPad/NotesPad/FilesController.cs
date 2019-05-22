@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -8,6 +10,8 @@ namespace NotesPad
     internal class FilesController : IFilesController
     {
         private Form _window;
+        TreeView FolderView;
+
         private string initialPath = string.Empty;
         public Form Window
 
@@ -21,8 +25,12 @@ namespace NotesPad
         public void Setup()
         {
             //read initial path
-            initialPath = ConfigurationManager.AppSettings["InitialFolderPath"];
+             
+            var appSettingsReader = new System.Configuration.AppSettingsReader();
+            initialPath = (string)appSettingsReader.GetValue("InitialFolderPath", typeof(string));
+
             BuildFileBrowser();
+            PopulateFolderView(initialPath, FolderView);
         }
 
         private void BuildFileBrowser()
@@ -38,19 +46,19 @@ namespace NotesPad
             outerContainer.Panel1.Name = "FolderBrowser";
             outerContainer.Panel2.Name = "FileBrowser";
 
-            var folderView = new TreeView()
+            FolderView = new TreeView()
             {
                 Dock = DockStyle.Fill
             };
 
-            var FileView = new ListView
+            var fileView = new ListView
             {
                 Dock = DockStyle.Fill,
                 GridLines = true,
                 View = View.List
             };
-            outerContainer.Panel1.Controls.Add(folderView);
-            outerContainer.Panel2.Controls.Add(FileView);
+            outerContainer.Panel1.Controls.Add(FolderView);
+            outerContainer.Panel2.Controls.Add(fileView);
             ((Form)Window).Controls.Add(outerContainer);
         }
 
@@ -60,9 +68,42 @@ namespace NotesPad
             if (this.Window.IsDisposed)
             {
                 this.Window = new Files(this);
+
             }
 
             ((DockContent)this._window).Show(DockingArea, DockState.DockLeft);
+        }
+
+        private void PopulateFolderView(string path,TreeView folderView)
+        {
+            var info = new DirectoryInfo(path);
+            if (!info.Exists) return;
+            var rootNode = new TreeNode(info.Name) { Tag = info };
+            GetDirectories(info.GetDirectories(), rootNode);
+            folderView.Nodes.Add(rootNode);
+          
+        }
+        private void GetDirectories(DirectoryInfo[] getDirectories, TreeNode rootNode)
+        {
+            foreach (var subDir in getDirectories)
+            {
+                var aNode = new TreeNode(subDir.Name, 0, 0);
+                aNode.Tag = subDir;
+                aNode.ImageKey = "folder";
+                try
+                {
+                    var subSubDirs = subDir.GetDirectories();
+                    if (subSubDirs.Length != 0)
+                    {
+                        GetDirectories(subSubDirs, aNode);
+                    }
+                }
+                catch (System.UnauthorizedAccessException uae)
+                {
+                    Console.WriteLine(uae.Message);
+                }
+                rootNode.Nodes.Add(aNode);
+            }
         }
     }
 }

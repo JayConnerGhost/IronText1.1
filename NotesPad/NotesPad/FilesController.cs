@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Configuration;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -7,7 +8,7 @@ namespace NotesPad
     internal class FilesController : IFilesController
     {
         private Form _window;
-
+        private string initialPath = string.Empty;
         public Form Window
 
         {
@@ -19,6 +20,22 @@ namespace NotesPad
 
         public void Setup()
         {
+            //read initial path
+            initialPath = ConfigurationManager.AppSettings["InitialFolderPath"];
+            BuildFolderBrowser();
+        }
+
+        private void BuildFolderBrowser()
+        {
+            var splitterPanel = new SplitContainer
+            {
+                Dock = DockStyle.Fill,
+                Orientation = Orientation.Horizontal,
+                SplitterDistance = 100,
+                SplitterWidth = 6
+            };
+
+            ((Form)Window).Controls.Add(splitterPanel);
         }
 
         public void Show()

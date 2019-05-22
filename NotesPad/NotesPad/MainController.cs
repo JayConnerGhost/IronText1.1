@@ -11,7 +11,7 @@ namespace NotesPad
         private readonly IIdeasController _ideasController;
         private readonly IFilesController _filesController;
         private readonly IEditorController _editorController;
-
+        private readonly ImageList _icons=new ImageList();
         public Container Window { get; set; }
         public UnityContainer DependencyContainer { get; set; }
 
@@ -33,11 +33,19 @@ namespace NotesPad
             _ideasController.DockingArea = dockingArea;
             _filesController.DockingArea = dockingArea;
             _editorController.DockingArea = dockingArea;
+            SetupIcons(_icons);
             SetupMenu(Window);
+        }
+
+        private void SetupIcons(ImageList icons)
+        {
+            //TODO code in here to load icons for menus
+            throw new NotImplementedException();
         }
 
         private void SetupMenu(Container window)
         {
+            //TODO Icons for menu actions
             var mnuFile = new ToolStripMenuItem("File");
             var mnuEdit = new ToolStripMenuItem("Edit");
             var mnuView = new ToolStripMenuItem("View");

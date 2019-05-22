@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Configuration;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -11,6 +12,7 @@ namespace NotesPad
     {
         private Form _window;
         TreeView FolderView;
+        ImageList Icons=new ImageList();
 
         private string initialPath = string.Empty;
         public Form Window
@@ -24,13 +26,20 @@ namespace NotesPad
 
         public void Setup()
         {
-            //read initial path
-             
             var appSettingsReader = new System.Configuration.AppSettingsReader();
             initialPath = (string)appSettingsReader.GetValue("InitialFolderPath", typeof(string));
-
+            SetupIcons(Icons);
             BuildFileBrowser();
             PopulateFolderView(initialPath, FolderView);
+        }
+
+        private void SetupIcons(ImageList icons)
+        {
+            var iconFolderBasePath = "icons/";
+            //TODO set up imagelist
+            icons.Images.Add("folder",Image.FromFile($"{iconFolderBasePath}/Hopstarter-Sleek-Xp-Basic-Folder-Open.ico"));
+            icons.Images.Add("file", Image.FromFile($"{iconFolderBasePath}/icons8-document-52.png"));
+
         }
 
         private void BuildFileBrowser()
@@ -48,7 +57,8 @@ namespace NotesPad
 
             FolderView = new TreeView()
             {
-                Dock = DockStyle.Fill
+                Dock = DockStyle.Fill,
+                ImageList = Icons
             };
 
             var fileView = new ListView

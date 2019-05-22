@@ -22,12 +22,12 @@ namespace NotesPad
         {
             //read initial path
             initialPath = ConfigurationManager.AppSettings["InitialFolderPath"];
-            BuildFolderBrowser();
+            BuildFileBrowser();
         }
 
-        private void BuildFolderBrowser()
+        private void BuildFileBrowser()
         {
-            var splitterPanel = new SplitContainer
+            var outerContainer = new SplitContainer
             {
                 Dock = DockStyle.Fill,
                 Orientation = Orientation.Horizontal,
@@ -35,7 +35,23 @@ namespace NotesPad
                 SplitterWidth = 6
             };
 
-            ((Form)Window).Controls.Add(splitterPanel);
+            outerContainer.Panel1.Name = "FolderBrowser";
+            outerContainer.Panel2.Name = "FileBrowser";
+
+            var folderView = new TreeView()
+            {
+                Dock = DockStyle.Fill
+            };
+
+            var FileView = new ListView
+            {
+                Dock = DockStyle.Fill,
+                GridLines = true,
+                View = View.List
+            };
+            outerContainer.Panel1.Controls.Add(folderView);
+            outerContainer.Panel2.Controls.Add(FileView);
+            ((Form)Window).Controls.Add(outerContainer);
         }
 
         public void Show()

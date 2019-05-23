@@ -68,7 +68,8 @@ namespace NotesPad
             {
                 Dock = DockStyle.Fill,
                 GridLines = true,
-                View = View.List
+                View = View.List,
+                SmallImageList = Icons
             };
             outerContainer.Panel1.Controls.Add(FolderView);
             outerContainer.Panel2.Controls.Add(FileView);
@@ -85,22 +86,11 @@ namespace NotesPad
             {
                 ListViewItem item = null;
                 ListViewItem.ListViewSubItem[] subItems;
-                foreach (var dir in directory.GetDirectories())
-                {
-                    item = new ListViewItem(dir.Name, 1);
-                    subItems = new ListViewItem.ListViewSubItem[]
-                    {
-                        new ListViewItem.ListViewSubItem(item, "Directory"),
-                        new ListViewItem.ListViewSubItem(item, dir.LastAccessTime.ToShortDateString())
-                    };
 
-                    item.SubItems.AddRange(subItems);
-                    FileView.Items.Add(item);
-                }
 
                 foreach (var file in directory.GetFiles())
                 {
-                    item = new ListViewItem(file.Name, 0) { Tag = file.FullName, Name = file.Name };
+                    item = new ListViewItem(file.Name, 0) { Tag = file.FullName, Name = file.Name,ImageIndex = 1};
                     subItems = new ListViewItem.ListViewSubItem[]
                     {
                         new ListViewItem.ListViewSubItem(item,"File"),

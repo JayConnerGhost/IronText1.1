@@ -52,6 +52,9 @@ namespace NotesPad
             icons.Images.Add("pasteEdit", Image.FromFile($"{IconBasePath}Everaldo-Kids-Icons-Edit-paste.ico"));
             icons.Images.Add("copyEdit", Image.FromFile($"{IconBasePath}Hopstarter-Soft-Scraps-Document-Copy.ico"));
             icons.Images.Add("selectAllEdit", Image.FromFile($"{IconBasePath}Saki-NuoveXT-2-Actions-select-all.ico"));
+            icons.Images.Add("toolsFileBrowser", Image.FromFile($"{IconBasePath}Custom-Icon-Design-Flatastic-8-File-explorer.ico"));
+            icons.Images.Add("toolsIdeas", Image.FromFile($"{IconBasePath}Iconsmind-Outline-Idea-2.ico"));
+            icons.Images.Add("toolsSpelling", Image.FromFile($"{IconBasePath}Oxygen-Icons.org-Oxygen-Actions-tools-check-spelling.ico"));
 
         }
 
@@ -101,9 +104,18 @@ namespace NotesPad
 
         private void SetupToolsMenu(ToolStripMenuItem mnuTools)
         {
-            mnuTools.DropDownItems.Add(new ToolStripMenuItem("Ideas",null,IdeasOnClick,Keys.Alt | Keys.I));
-            mnuTools.DropDownItems.Add(new ToolStripMenuItem("Files",null,FilesOnClick,Keys.Alt|Keys.F));
-            mnuTools.DropDownItems.Add(new ToolStripMenuItem("Spelling",null,SpellingOnClick,Keys.Alt | Keys.S));
+            var ideasMenuItem = new ToolStripMenuItem("Ideas", null, IdeasOnClick, Keys.Alt | Keys.I)
+            {
+                Image = _icons.Images[11]
+            };
+            mnuTools.DropDownItems.Add(ideasMenuItem);
+            var fileBrowserMenuItem =
+                new ToolStripMenuItem("Files", null, FilesOnClick, Keys.Alt | Keys.F)
+                    { Image = _icons.Images[10]};
+            mnuTools.DropDownItems.Add(fileBrowserMenuItem);
+            var spellingMenuItem = new ToolStripMenuItem("Spelling",null,SpellingOnClick,Keys.Alt | Keys.S);
+            spellingMenuItem.Image = _icons.Images[12];
+            mnuTools.DropDownItems.Add(spellingMenuItem);
         }
 
         private void SpellingOnClick(object sender, EventArgs e)

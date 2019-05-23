@@ -149,6 +149,9 @@
     <Content Include="icons\Oxygen-Icons.org-Oxygen-Actions-document-save.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Oxygen-Icons.org-Oxygen-Actions-tools-check-spelling.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Saki-NuoveXT-2-Actions-select-all.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

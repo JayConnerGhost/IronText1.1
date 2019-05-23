@@ -12,6 +12,7 @@ namespace NotesPad
     {
         private Form _window;
         TreeView FolderView;
+        ListView FileView;
         ImageList Icons=new ImageList();
 
         private string initialPath = string.Empty;
@@ -60,16 +61,64 @@ namespace NotesPad
                 Dock = DockStyle.Fill,
                 ImageList = Icons
             };
+            FolderView.NodeMouseClick += FolderViewNodeMouseClick;
 
-            var fileView = new ListView
+
+            FileView = new ListView
             {
                 Dock = DockStyle.Fill,
                 GridLines = true,
                 View = View.List
             };
             outerContainer.Panel1.Controls.Add(FolderView);
-            outerContainer.Panel2.Controls.Add(fileView);
+            outerContainer.Panel2.Controls.Add(FileView);
             ((Form)Window).Controls.Add(outerContainer);
+        }
+
+        private void FolderViewNodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            //work here to expand tree
+            var newSelected = e.Node;
+            FileView.Items.Clear();
+            var directory = (DirectoryInfo)newSelected.Tag;
+            try
+            {
+                ListViewItem item = null;
+                ListViewItem.ListViewSubItem[] subItems;
+                foreach (var dir in directory.GetDirectories())
+                {
+                    item = new ListViewItem(dir.Name, 1);
+                    subItems = new ListViewItem.ListViewSubItem[]
+                    {
+                        new ListViewItem.ListViewSubItem(item, "Directory"),
+                        new ListViewItem.ListViewSubItem(item, dir.LastAccessTime.ToShortDateString())
+                    };
+
+                    item.SubItems.AddRange(subItems);
+                    FileView.Items.Add(item);
+                }
+
+                foreach (var file in directory.GetFiles())
+                {
+                    item = new ListViewItem(file.Name, 0) { Tag = file.FullName, Name = file.Name };
+                    subItems = new ListViewItem.ListViewSubItem[]
+                    {
+                        new ListViewItem.ListViewSubItem(item,"File"),
+                        new ListViewItem.ListViewSubItem(item,
+                            file.LastAccessTime.ToShortDateString())
+                    };
+
+                    item.SubItems.AddRange(subItems);
+                    FileView.Items.Add(item);
+
+                }
+            }
+            catch (System.UnauthorizedAccessException uae)
+            {
+                Console.WriteLine(uae.Message);
+            }
+            FileView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+
         }
 
         public void Show()

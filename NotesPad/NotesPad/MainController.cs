@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Unity;
@@ -40,7 +41,18 @@ namespace NotesPad
         private void SetupIcons(ImageList icons)
         {
             //TODO code in here to load icons for menus
-            throw new NotImplementedException();
+            var IconBasePath="icons/";
+            icons.Images.Add("newFile", Image.FromFile($"{IconBasePath}icons8-document-52.png"));
+            icons.Images.Add("saveFile", Image.FromFile($"{IconBasePath}Oxygen-Icons.org-Oxygen-Actions-document-save.ico"));
+            icons.Images.Add("saveAsFile", Image.FromFile($"{IconBasePath}Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico"));
+            icons.Images.Add("saveAllFile", Image.FromFile($"{IconBasePath}Actions-document-save-all-icon.png"));
+            icons.Images.Add("openFile", Image.FromFile($"{IconBasePath}Custom-Icon-Design-Pretty-Office-9-Open-file.ico"));
+            icons.Images.Add("exitFile", Image.FromFile($"{IconBasePath}Hopstarter-Soft-Scraps-Button-Close.ico"));
+            icons.Images.Add("cutEdit", Image.FromFile($"{IconBasePath}Alecive-Flatwoken-Apps-Actions-Cut.ico"));
+            icons.Images.Add("pasteEdit", Image.FromFile($"{IconBasePath}Everaldo-Kids-Icons-Edit-paste.ico"));
+            icons.Images.Add("copyEdit", Image.FromFile($"{IconBasePath}Hopstarter-Soft-Scraps-Document-Copy.ico"));
+            icons.Images.Add("selectAllEdit", Image.FromFile($"{IconBasePath}Saki-NuoveXT-2-Actions-select-all.ico"));
+
         }
 
         private void SetupMenu(Container window)
@@ -52,6 +64,7 @@ namespace NotesPad
             var mnuTools = new ToolStripMenuItem("Tools");
             SetupToolsMenu(mnuTools);
             SetupFileMenu(mnuFile);
+            window.MenuStrip.ImageList = _icons;
             window.MenuStrip.Items.Add(mnuFile);
             window.MenuStrip.Items.Add(mnuEdit);
             window.MenuStrip.Items.Add(mnuView);
@@ -60,8 +73,16 @@ namespace NotesPad
 
         private void SetupFileMenu(ToolStripMenuItem mnuFile)
         {
-            mnuFile.DropDownItems.Add(new ToolStripMenuItem("New", null, NewFileOnClick,Keys.Control|Keys.N));
-            mnuFile.DropDownItems.Add(new ToolStripMenuItem("Save", null, SaveFileOnClick, Keys.Control | Keys.S));
+            var newMenuItem = new ToolStripMenuItem("New", null, NewFileOnClick, Keys.Control | Keys.N)
+            {
+                Image = _icons.Images[0]
+            };
+            mnuFile.DropDownItems.Add(newMenuItem);
+            var saveMenuItem = new ToolStripMenuItem("Save", null, SaveFileOnClick, Keys.Control | Keys.S)
+            {
+                Image = _icons.Images[1]
+            };
+            mnuFile.DropDownItems.Add(saveMenuItem);
         }
 
         private void SaveFileOnClick(object sender, EventArgs e)

@@ -113,6 +113,9 @@
     <Content Include="icons\Avosoft-Warm-Toolbar-Folder-open.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Custom-Icon-Design-Pretty-Office-9-Open-file.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Everaldo-Kids-Icons-Edit-paste.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -113,6 +113,9 @@
     <Content Include="icons\Avosoft-Warm-Toolbar-Folder-open.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Custom-Icon-Design-Flatastic-8-File-explorer.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Custom-Icon-Design-Pretty-Office-9-Open-file.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -132,6 +135,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\icons8-document-52.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Iconsmind-Outline-Idea-2.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Mattahan-Umicons-Folder-New-Folder.ico">

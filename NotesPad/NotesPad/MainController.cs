@@ -36,6 +36,22 @@ namespace NotesPad
             _editorController.DockingArea = dockingArea;
             SetupIcons(_icons);
             SetupMenu(Window);
+            SetupEvents();
+        }
+
+        private void SetupEvents()
+        {
+            _filesController.OpenFile += filesController_OpenFile;
+        }
+
+        private void filesController_OpenFile(object sender, EventArgs e)
+        {
+            var listViewItemSelectionChangedEventArgs = (ListViewItemSelectionChangedEventArgs)e;
+            var listViewItem = listViewItemSelectionChangedEventArgs.Item;
+            var editor = DependencyContainer.Resolve<IEditor>();
+            editor.Show(Window.dockPanel, DockState.Document);
+            editor.Controller.OpenFile((string)listViewItem.Tag, listViewItem.Name);
+           
         }
 
         private void SetupIcons(ImageList icons)

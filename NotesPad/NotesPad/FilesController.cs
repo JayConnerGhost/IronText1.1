@@ -14,7 +14,7 @@ namespace NotesPad
         TreeView FolderView;
         ListView FileView;
         ImageList Icons=new ImageList();
-
+        public event EventHandler OpenFile;
         private string initialPath = string.Empty;
         public Form Window
 
@@ -71,9 +71,20 @@ namespace NotesPad
                 View = View.List,
                 SmallImageList = Icons
             };
+            FileView.ItemSelectionChanged += FileViewOnItemSelectionChanged;
+
             outerContainer.Panel1.Controls.Add(FolderView);
             outerContainer.Panel2.Controls.Add(FileView);
             ((Form)Window).Controls.Add(outerContainer);
+        }
+
+        private void FileViewOnItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (e.IsSelected)
+            {
+                var openFile = OpenFile;
+                openFile?.Invoke(sender, e);
+            }
         }
 
         private void FolderViewNodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -122,6 +133,8 @@ namespace NotesPad
 
             ((DockContent)this._window).Show(DockingArea, DockState.DockLeft);
         }
+
+      
 
         private void PopulateFolderView(string path,TreeView folderView)
         {

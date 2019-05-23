@@ -66,6 +66,25 @@ namespace NotesPad
             ((Form)Window).Text = name;
         }
 
+        public void OpenFile(string path, string fileName)
+        {
+            //TODO implement file open command , populate this . rtf
+
+            if (path == null) return;
+
+            ((Form)Window).Text = fileName;
+            var target = (RichTextBox)Window.Controls[0];
+
+            try
+            {
+                target.LoadFile(path, RichTextBoxStreamType.RichText);
+            }
+            catch (Exception e)
+            {
+                target.LoadFile(path, RichTextBoxStreamType.PlainText);
+            }
+        }
+
         private void AddSpellingSupport()
         {
             //http://www.loresoft.com/The-NetSpell-project

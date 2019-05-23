@@ -7,5 +7,6 @@ namespace NotesPad
         void Show();
         void SpellCheck();
         void Save();
+        void OpenFile(string path, string fileName);
     }
 }

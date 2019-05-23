@@ -25,5 +25,6 @@ namespace NotesPad
         }
 
         public IEditorController Controller => _controller;
+        
     }
 }

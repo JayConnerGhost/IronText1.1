@@ -86,7 +86,7 @@ namespace NotesPad
             icons.Images.Add("toolsFileBrowser", Image.FromFile($"{IconBasePath}Custom-Icon-Design-Flatastic-8-File-explorer.ico"));
             icons.Images.Add("toolsIdeas", Image.FromFile($"{IconBasePath}Iconsmind-Outline-Idea-2.ico"));
             icons.Images.Add("toolsSpelling", Image.FromFile($"{IconBasePath}Oxygen-Icons.org-Oxygen-Actions-tools-check-spelling.ico"));
-
+            icons.Images.Add("fileOpenFolder", Image.FromFile($"{IconBasePath}Avosoft-Warm-Toolbar-Folder-open.ico"));
         }
 
         private void SetupMenu(Container window)
@@ -117,11 +117,29 @@ namespace NotesPad
                 Image = _icons.Images[1]
             };
             mnuFile.DropDownItems.Add(saveMenuItem);
+
+            var openFolderMenuItem=new ToolStripMenuItem("Open Folder",null,OpenFolderOnClick, Keys.Control | Keys.F)
+            {
+                Image=_icons.Images[13]
+            };
+            mnuFile.DropDownItems.Add(openFolderMenuItem);
+        }
+
+
+        private void OpenFolderOnClick(object sender, EventArgs e)
+        {
             //***************************************************************************
             //TODO CODE iN here for open directory -> call _fileController
-            var folderPicker = new CommonOpenFileDialog {IsFolderPicker = true};
-            folderPicker.ShowDialog();
+            var folderPicker = new CommonOpenFileDialog { IsFolderPicker = true };
+            var result=folderPicker.ShowDialog();
+            if (result == CommonFileDialogResult.Cancel)
+            {
+                return;
+
+            }
+            var path = folderPicker.FileName;
             //****************************************************************************
+            _filesController.LoadFolderViewFromPath(path);
         }
 
         private void SaveFileOnClick(object sender, EventArgs e)

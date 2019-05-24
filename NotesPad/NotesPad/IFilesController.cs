@@ -7,5 +7,6 @@ namespace NotesPad
     {
         void Show();
         event EventHandler OpenFile;
+        void LoadFolderViewFromPath(string path);
     }
 }

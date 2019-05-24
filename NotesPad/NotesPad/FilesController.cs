@@ -135,8 +135,11 @@ namespace NotesPad
             ((DockContent)this._window).Show(DockingArea, DockState.DockLeft);
         }
 
-      
 
+        public void LoadFolderViewFromPath(string path)
+        {
+            PopulateFolderView(path,FolderView);
+        }
         private void PopulateFolderView(string path,TreeView folderView)
         {
             var info = new DirectoryInfo(path);

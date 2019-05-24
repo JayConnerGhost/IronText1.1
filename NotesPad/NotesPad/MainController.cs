@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Unity;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -53,7 +54,6 @@ namespace NotesPad
             if (IsFileAlreadyOpen(path))
             {
                 return;
-
             }
             var editor = DependencyContainer.Resolve<IEditor>();
             editor.Show(Window.dockPanel, DockState.Document);
@@ -117,6 +117,11 @@ namespace NotesPad
                 Image = _icons.Images[1]
             };
             mnuFile.DropDownItems.Add(saveMenuItem);
+            //***************************************************************************
+            //TODO CODE iN here for open directory -> call _fileController
+            var folderPicker = new CommonOpenFileDialog {IsFolderPicker = true};
+            folderPicker.ShowDialog();
+            //****************************************************************************
         }
 
         private void SaveFileOnClick(object sender, EventArgs e)

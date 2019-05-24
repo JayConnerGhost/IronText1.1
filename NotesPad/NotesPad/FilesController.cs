@@ -15,6 +15,7 @@ namespace NotesPad
         ListView FileView;
         ImageList Icons=new ImageList();
         public event EventHandler OpenFile;
+       
         private string initialPath = string.Empty;
         public Form Window
 

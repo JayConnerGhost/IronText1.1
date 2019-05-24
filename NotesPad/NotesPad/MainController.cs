@@ -45,6 +45,18 @@ namespace NotesPad
         {
             _filesController.OpenFile += filesController_OpenFile;
         }
+        private void LoadEditerWithFileFromPath(string filePath)
+        {
+            if (IsFileAlreadyOpen(filePath))
+            {
+                return;
+            }
+            var editor = DependencyContainer.Resolve<IEditor>();
+            editor.Show(Window.dockPanel, DockState.Document);
+            ((DockContent)editor).Tag = (string)filePath;
+            var fileName = Path.GetFileName(filePath);
+            editor.Controller.OpenFile(filePath, fileName);
+        }
 
         private void filesController_OpenFile(object sender, EventArgs e)
         {
@@ -123,22 +135,42 @@ namespace NotesPad
                 Image=_icons.Images[13]
             };
             mnuFile.DropDownItems.Add(openFolderMenuItem);
+
+            var openFileMenuItem = new ToolStripMenuItem("Open File", null, OpenFileOnClick, Keys.Control | Keys.I)
+            {
+                Image=_icons.Images[4]
+            };
+            mnuFile.DropDownItems.Add(openFileMenuItem);
         }
+
+        private void OpenFileOnClick(object sender, EventArgs e)
+        {
+            using (var filePicker = new CommonOpenFileDialog())
+            {
+                var result = filePicker.ShowDialog();
+                if (result == CommonFileDialogResult.Cancel)
+                {
+                    return;
+                }
+
+                var filePath = filePicker.FileName;
+                LoadEditerWithFileFromPath(filePath);
+            }
+        }
+
+        
 
 
         private void OpenFolderOnClick(object sender, EventArgs e)
         {
-            //***************************************************************************
-            //TODO CODE iN here for open directory -> call _fileController
             var folderPicker = new CommonOpenFileDialog { IsFolderPicker = true };
             var result=folderPicker.ShowDialog();
             if (result == CommonFileDialogResult.Cancel)
             {
                 return;
-
             }
             var path = folderPicker.FileName;
-            //****************************************************************************
+            
             _filesController.LoadFolderViewFromPath(path);
         }
 

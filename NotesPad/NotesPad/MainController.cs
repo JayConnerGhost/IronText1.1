@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Unity;
 using WeifenLuo.WinFormsUI.Docking;
@@ -48,10 +49,24 @@ namespace NotesPad
         {
             var listViewItemSelectionChangedEventArgs = (ListViewItemSelectionChangedEventArgs)e;
             var listViewItem = listViewItemSelectionChangedEventArgs.Item;
+            var path = (string)listViewItem.Tag;
+            if (IsFileAlreadyOpen(path))
+            {
+                return;
+
+            }
             var editor = DependencyContainer.Resolve<IEditor>();
             editor.Show(Window.dockPanel, DockState.Document);
-            editor.Controller.OpenFile((string)listViewItem.Tag, listViewItem.Name);
-           
+            ((DockContent) editor).Tag = (string) path;
+            editor.Controller.OpenFile(path, listViewItem.Name);
+            
+        }
+
+        private bool IsFileAlreadyOpen(string path)
+        {
+            var documents = this.Window.dockPanel.Documents;
+            var matchingDocuments=documents.FirstOrDefault(d => ((string)((Editor)d).Tag) == path);
+            return matchingDocuments != null;
         }
 
         private void SetupIcons(ImageList icons)

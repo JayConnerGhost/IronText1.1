@@ -68,10 +68,8 @@ namespace NotesPad
 
         public void OpenFile(string path, string fileName)
         {
-            //TODO implement file open command , populate this . rtf
-
             if (path == null) return;
-
+            
             ((Form)Window).Text = fileName;
             var target = (RichTextBox)Window.Controls[0];
 

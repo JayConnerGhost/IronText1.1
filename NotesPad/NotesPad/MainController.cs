@@ -141,6 +141,18 @@ namespace NotesPad
                 Image=_icons.Images[4]
             };
             mnuFile.DropDownItems.Add(openFileMenuItem);
+
+            var closeApplicationMenuItem=new ToolStripMenuItem("Exit", null, CloseApplicationFileOnClick, Keys.Control | Keys.Q)
+            {
+                Image = _icons.Images[5]
+            };
+
+            mnuFile.DropDownItems.Add(closeApplicationMenuItem);
+        }
+
+        private void CloseApplicationFileOnClick(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void OpenFileOnClick(object sender, EventArgs e)
@@ -157,10 +169,7 @@ namespace NotesPad
                 LoadEditerWithFileFromPath(filePath);
             }
         }
-
         
-
-
         private void OpenFolderOnClick(object sender, EventArgs e)
         {
             var folderPicker = new CommonOpenFileDialog { IsFolderPicker = true };

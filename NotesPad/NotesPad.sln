@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesPad.Data", "NotesPad.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesPad.Data.Tests", "NotesPad.Data.Tests\NotesPad.Data.Tests.csproj", "{B73AA156-9735-43E4-8029-5DD1F0D89B4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesPad.Objects", "NotesPad.Objects\NotesPad.Objects.csproj", "{D6698553-B0C7-4967-AA6D-16BC09F234A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B73AA156-9735-43E4-8029-5DD1F0D89B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B73AA156-9735-43E4-8029-5DD1F0D89B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B73AA156-9735-43E4-8029-5DD1F0D89B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6698553-B0C7-4967-AA6D-16BC09F234A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6698553-B0C7-4967-AA6D-16BC09F234A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6698553-B0C7-4967-AA6D-16BC09F234A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6698553-B0C7-4967-AA6D-16BC09F234A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

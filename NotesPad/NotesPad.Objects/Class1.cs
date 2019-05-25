@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NotesPad.Data
+namespace NotesPad.Objects
 {
     public class Class1
     {

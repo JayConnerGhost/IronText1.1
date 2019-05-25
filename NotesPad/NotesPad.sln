@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesPad", "NotesPad\NotesPad.csproj", "{D175C9B9-EAF6-4F71-8CC3-4E1A0DA4DE0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesPad.Data", "NotesPad.Data\NotesPad.Data.csproj", "{EC9816C2-85FA-4998-8299-0F3533DC3029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesPad.Data.Tests", "NotesPad.Data.Tests\NotesPad.Data.Tests.csproj", "{B73AA156-9735-43E4-8029-5DD1F0D89B4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D175C9B9-EAF6-4F71-8CC3-4E1A0DA4DE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D175C9B9-EAF6-4F71-8CC3-4E1A0DA4DE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D175C9B9-EAF6-4F71-8CC3-4E1A0DA4DE0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC9816C2-85FA-4998-8299-0F3533DC3029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC9816C2-85FA-4998-8299-0F3533DC3029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC9816C2-85FA-4998-8299-0F3533DC3029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9816C2-85FA-4998-8299-0F3533DC3029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73AA156-9735-43E4-8029-5DD1F0D89B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73AA156-9735-43E4-8029-5DD1F0D89B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73AA156-9735-43E4-8029-5DD1F0D89B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73AA156-9735-43E4-8029-5DD1F0D89B4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

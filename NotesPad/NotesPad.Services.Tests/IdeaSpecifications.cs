@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +17,36 @@ namespace NotesPad.Services.Tests
         public void Repository_is_called_add_idea_is_called_from_service()
         {
             //Arrange 
-            var idea = new Idea {Name = "test idea", Description = "test idea description"};
+            Guid Id = Guid.NewGuid();
+            const string Name = "test";
+            const string Description = "Test description";
             IIdeaRepository respository=NSubstitute.Substitute.For<IIdeaRepository>();
             //Act
-            IIdeaService service=new IdeaService();
-            service.Add(idea);
+            IIdeaService service=new IdeaService(respository);
+            service.Add(Name,Description);
 
             //Assert
-            respository.Received().Save(idea);
+            respository.Received().Save(Arg.Is<Idea>(x => x.Name == Name));
+        }
+
+        [Fact]
+        public void Repository_is_called_when_updating_an_idea()
+        {
+            //Arrange
+            IIdeaRepository repository=Substitute.For<IIdeaRepository>();
+            Guid Id=Guid.NewGuid();
+            repository.GetById(Id).Returns(new Idea() {Name = "old", Description = "Old description", _id = Id});
+
+            const string Name = "Test";
+            const string Description = "Test Description";
+
+            IIdeaService service=new IdeaService(repository);
+
+            //Act
+            service.Update(Id, Name, Description);
+
+            //Assert
+            repository.Received().Update(Arg.Is<Idea>(x=>x.Name==Name));
         }
     }
 }

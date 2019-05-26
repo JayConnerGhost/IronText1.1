@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using NotesPad.Data;
 using NotesPad.Objects;
 namespace NotesPad.Data.Tests
 {
-    public class ShouldBeAbleToSaveIdeasSpecifications
+    public class IdeasSpecifications
     {
 
         [Fact]
@@ -74,6 +75,38 @@ namespace NotesPad.Data.Tests
 
             //Assert
             Assert.Equal(2, result.Count);
+        }
+
+        [Fact]
+        public void Can_edit_an_idea()
+        {
+            //Arrange
+            const string newDescription = "edited test idea description";
+            string newName="Edited test idea name";
+            Guid ideaId=Guid.Empty;
+            IIdeaRepository repository=new IdeaRepository();
+            repository.DeleteAll();
+
+            var targetIdea = new Idea()
+            {
+                _id = ideaId,
+                Name = "test Idea",
+                Description = "Test Idea"
+            };
+
+
+            ideaId=repository.Save(targetIdea);
+
+
+            //Act
+            targetIdea.Name = newName;
+            targetIdea.Description = newDescription;
+            repository.Update(targetIdea);
+
+            //Assert
+            var editiedIdea = repository.GetById(ideaId);
+            Assert.Equal(newName,editiedIdea.Name);
+            Assert.Equal(newDescription,editiedIdea.Description);
         }
 
     }

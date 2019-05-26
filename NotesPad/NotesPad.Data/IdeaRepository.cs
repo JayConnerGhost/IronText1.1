@@ -23,13 +23,15 @@ namespace NotesPad.Data
 
             _ideas = _database.GetCollection<Idea>("Ideas");
             _ideas.EnsureIndex("Name");
+            _ideas.EnsureIndex("_Id");
         }
 
-        public void Save(IIdea idea)
+        public Guid Save(IIdea idea)
         {
             var ideaToStore = (Idea) idea;
             ideaToStore._id = Guid.NewGuid();
             _ideas.Insert(ideaToStore);
+            return ideaToStore._id;
         }
 
         public Idea FindbyName(string testIdea)
@@ -51,6 +53,16 @@ namespace NotesPad.Data
         {
             var results = _ideas.FindAll();
             return results.ToList();
+        }
+
+        public void Update(Idea targetIdea)
+        {
+            _ideas.Update(targetIdea._id, targetIdea);
+        }
+
+        public Idea GetById(Guid ideaId)
+        {
+           return _ideas.Find(x=> x._id==ideaId).FirstOrDefault();
         }
     }
 }

@@ -28,5 +28,28 @@ namespace NotesPad.Data.Tests
             Assert.Equal(description,result.Description);
         }
 
+        [Fact]
+        public void Can_delete_all_record_in_collection()
+        {
+            //Arrange
+            const string name = "Test Idea";
+            const string description = "Test idea description";
+            IIdea Idea = new Idea() { Name = name, Description = description };
+
+            const string name2 = "Test Idea";
+            const string description2 = "Test idea description";
+            IIdea Idea2 = new Idea() { Name = name, Description = description };
+            IIdeaRepository repository = new IdeaRepository();
+            repository.Save(Idea);
+            repository.Save(Idea2);
+
+            //Act
+            repository.DeleteAll();
+
+            //Assert
+            var result = repository.GetAll();
+            Assert.Equal(0,result.Count);
+        }
+
     }
 }

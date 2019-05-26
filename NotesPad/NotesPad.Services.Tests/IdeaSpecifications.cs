@@ -46,7 +46,36 @@ namespace NotesPad.Services.Tests
             service.Update(Id, Name, Description);
 
             //Assert
-            repository.Received().Update(Arg.Is<Idea>(x=>x.Name==Name));
+            repository.Received().Update(Arg.Is<Idea>(x=>x.Name==Name && x.Description==Description));
+        }
+
+        [Fact]
+        public void Repository_is_called_when_getting_all_ideas()
+        {
+            //Arrange 
+            IIdeaRepository repository=Substitute.For<IIdeaRepository>();
+            IIdeaService service=new IdeaService(repository);
+
+            //Act
+            service.GetList();
+
+            //Assert
+            repository.Received().GetAll();
+        }
+
+        [Fact]
+        public void Repository_is_called_when_deleting_all_ideas()
+        {
+            //Arrange 
+            IIdeaRepository repository = Substitute.For<IIdeaRepository>();
+            IIdeaService service = new IdeaService(repository);
+
+            //Act
+            service.DeleteAll();
+
+            //Assert
+            repository.Received().DeleteAll();
+
         }
     }
 }

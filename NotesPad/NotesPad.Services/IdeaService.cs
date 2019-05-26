@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NotesPad.Data;
 using NotesPad.Objects;
 
@@ -25,6 +26,16 @@ namespace NotesPad.Services
             target.Description = description;
             _repository.Update(target);
 
+        }
+
+        public IList<Idea> GetList()
+        {
+            return _repository.GetAll();
+        }
+
+        public void DeleteAll()
+        {
+            _repository.DeleteAll();
         }
     }
 }

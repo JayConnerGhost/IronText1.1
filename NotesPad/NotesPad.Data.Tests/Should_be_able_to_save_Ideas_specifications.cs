@@ -18,6 +18,7 @@ namespace NotesPad.Data.Tests
             const string description = "Test idea description";
             IIdea Idea = new Idea() {Name = name, Description = description};
             IIdeaRepository repository=new IdeaRepository();
+            repository.DeleteAll();
 
             //Act
             repository.Save(Idea);
@@ -26,6 +27,7 @@ namespace NotesPad.Data.Tests
             //Assert
             var result =repository.FindbyName(name);
             Assert.Equal(description,result.Description);
+            repository.DeleteAll();
         }
 
         [Fact]
@@ -40,6 +42,7 @@ namespace NotesPad.Data.Tests
             const string description2 = "Test idea description";
             IIdea Idea2 = new Idea() { Name = name, Description = description };
             IIdeaRepository repository = new IdeaRepository();
+            repository.DeleteAll();
             repository.Save(Idea);
             repository.Save(Idea2);
 
@@ -49,6 +52,28 @@ namespace NotesPad.Data.Tests
             //Assert
             var result = repository.GetAll();
             Assert.Equal(0,result.Count);
+        }
+
+        [Fact]
+        public void Can_retrieve_a_collection_of_ideas()
+        {
+            //Arrange
+            const string name = "Test Idea";
+            const string description = "Test idea description";
+            IIdea Idea = new Idea() { Name = name, Description = description };
+
+            const string name2 = "Test Idea";
+            const string description2 = "Test idea description";
+            IIdea Idea2 = new Idea() { Name = name, Description = description };
+            IIdeaRepository repository = new IdeaRepository();
+            repository.DeleteAll();
+            repository.Save(Idea);
+            repository.Save(Idea2);
+            //Act
+            var result = repository.GetAll();
+
+            //Assert
+            Assert.Equal(2, result.Count);
         }
 
     }

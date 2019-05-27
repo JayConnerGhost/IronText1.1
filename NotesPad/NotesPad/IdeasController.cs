@@ -10,7 +10,8 @@ namespace NotesPad
     public class IdeasController : IIdeasController
     {
         private readonly IIdeaService _service;
-
+        private IList<Idea> _ideasCollection;
+        private TextBox _ideaDescriptionText;
         private Form _window;
 
         public IdeasController(IIdeaService service)
@@ -28,11 +29,12 @@ namespace NotesPad
 
         public void Setup()
         {
-           // BuildDevelopmentData();//remove when no longer needed 
+            BuildDevelopmentData();//remove when no longer needed 
             //TODO:Code in here to get ideas 
-            var ideasCollection = _service.GetList();
+            
+            _ideasCollection = _service.GetList();
             //TODO:Code in here to display Ideas Name
-            BuildIdeasComponent(ideasCollection);
+            BuildIdeasComponent(_ideasCollection);
         }
 
         private void BuildDevelopmentData()
@@ -69,16 +71,18 @@ namespace NotesPad
             ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;
 
             ideasListView.Columns.Add("Ideas", -2);
-            var ideaText = new TextBox {Multiline = true, Dock = DockStyle.Fill};
+      
+            _ideaDescriptionText = new TextBox {Multiline = true, Dock = DockStyle.Fill};
 
             splitContainer.Panel1.Controls.Add(ideasListView);
-            splitContainer.Panel2.Controls.Add(ideaText);
+            splitContainer.Panel2.Controls.Add(_ideaDescriptionText);
 
             _window.Controls.Add(splitContainer);
 
             foreach (var idea in ideasCollection)
             {
                 ideasListView.Items.Add((string) idea._id.ToString(), idea.Name, null);
+
 
             }
 
@@ -90,7 +94,10 @@ namespace NotesPad
 
         private void IdeasListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            if (e.IsSelected)
+            {
+                MessageBox.Show((string)e.Item.Name);// use to Query list to get description and populate text view 
+            }
         }
 
         public void Show()

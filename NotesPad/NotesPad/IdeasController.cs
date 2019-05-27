@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using NotesPad.Objects;
 using NotesPad.Services;
@@ -29,7 +31,7 @@ namespace NotesPad
 
         public void Setup()
         {
-            BuildDevelopmentData();//remove when no longer needed 
+            //BuildDevelopmentData();//remove when no longer needed 
             //TODO:Code in here to get ideas 
             
             _ideasCollection = _service.GetList();
@@ -40,13 +42,13 @@ namespace NotesPad
         private void BuildDevelopmentData()
         {
             _service.Add("test 1","test description 1");
-            _service.Add("test 2","test description 1");
-            _service.Add("test 3","test description 1");
-            _service.Add("test 4","test description 1");
-            _service.Add("test 5","test description 1");
-            _service.Add("test 6","test description 1");
-            _service.Add("test 7","test description 1");
-            _service.Add("test 8","test description 1");
+            _service.Add("test 2","test description 2");
+            _service.Add("test 3","test description 3");
+            _service.Add("test 4","test description 4");
+            _service.Add("test 5","test description 5");
+            _service.Add("test 6","test description 6");
+            _service.Add("test 7","test description 7");
+            _service.Add("test 8","test description 8");
         }
 
         private void BuildIdeasComponent(IList<Idea> ideasCollection)
@@ -94,10 +96,9 @@ namespace NotesPad
 
         private void IdeasListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            if (e.IsSelected)
-            {
-                MessageBox.Show((string)e.Item.Name);// use to Query list to get description and populate text view 
-            }
+            if (!e.IsSelected) return;
+            var selectedItem= _ideasCollection.Where(x => x._id == Guid.Parse(e.Item.Name)).First();
+            _ideaDescriptionText.Text = selectedItem.Description;
         }
 
         public void Show()

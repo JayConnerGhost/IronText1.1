@@ -28,11 +28,23 @@ namespace NotesPad
 
         public void Setup()
         {
+           // BuildDevelopmentData();//remove when no longer needed 
             //TODO:Code in here to get ideas 
             var ideasCollection = _service.GetList();
             //TODO:Code in here to display Ideas Name
             BuildIdeasComponent(ideasCollection);
-            
+        }
+
+        private void BuildDevelopmentData()
+        {
+            _service.Add("test 1","test description 1");
+            _service.Add("test 2","test description 1");
+            _service.Add("test 3","test description 1");
+            _service.Add("test 4","test description 1");
+            _service.Add("test 5","test description 1");
+            _service.Add("test 6","test description 1");
+            _service.Add("test 7","test description 1");
+            _service.Add("test 8","test description 1");
         }
 
         private void BuildIdeasComponent(IList<Idea> ideasCollection)
@@ -44,18 +56,41 @@ namespace NotesPad
             splitContainer.Panel1.Name = "Names";
             splitContainer.Panel2.Name = "Description";
 
-            var ideasListView = new ListView {Dock = DockStyle.Fill};
+            var ideasListView = new ListView
+            {
+                Dock = DockStyle.Fill,
+                GridLines = true,
+                View = View.Details,
+                CheckBoxes = true,
+                AllowColumnReorder = true,
+                FullRowSelect = true,
+                Sorting = SortOrder.Ascending
+            };
+            ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;
+
+            ideasListView.Columns.Add("Ideas", -2);
             var ideaText = new TextBox {Multiline = true, Dock = DockStyle.Fill};
 
             splitContainer.Panel1.Controls.Add(ideasListView);
             splitContainer.Panel2.Controls.Add(ideaText);
 
             _window.Controls.Add(splitContainer);
-            //TODO:Code in here to display ideas description 
+
+            foreach (var idea in ideasCollection)
+            {
+                ideasListView.Items.Add((string) idea._id.ToString(), idea.Name, null);
+
+            }
+
             //TODO:Code in here to wire up ideas edit event 
             //TODO:Code in here to wire up ideas add event 
             //TODO:Code in here to wire up ideas delete event 
             //TODO:Code in here to delete all Ideas 
+        }
+
+        private void IdeasListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Show()

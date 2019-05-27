@@ -14,6 +14,7 @@ namespace NotesPad
         private readonly IIdeaService _service;
         private IList<Idea> _ideasCollection;
         private TextBox _ideaDescriptionText;
+        private TableLayoutPanel _outerContainer;
         private Form _window;
 
         public IdeasController(IIdeaService service)
@@ -33,10 +34,29 @@ namespace NotesPad
         {
             //BuildDevelopmentData();//remove when no longer needed 
             //TODO:Code in here to get ideas 
-            
+            //TODO:change to a table layout 2 rows 
             _ideasCollection = _service.GetList();
-            //TODO:Code in here to display Ideas Name
+            BuildOuterContainer();
+            AddToolBar();
             BuildIdeasComponent(_ideasCollection);
+        }
+
+        private void BuildOuterContainer()
+        {
+            _outerContainer = new TableLayoutPanel {Dock = DockStyle.Fill};
+            _outerContainer.ColumnStyles.Add(new ColumnStyle());
+            _outerContainer.RowStyles.Add(new RowStyle());
+            _outerContainer.RowStyles.Add(new RowStyle());
+            _window.Controls.Add(_outerContainer);
+        }
+
+        private void AddToolBar()
+        {
+            var toolBar = new ToolBar {Dock = DockStyle.Top};
+            toolBar.Appearance = ToolBarAppearance.Flat;
+            toolBar.Buttons.Add(new ToolBarButton("Delete"));
+           // Window.Controls.Add(toolBar);
+           _outerContainer.Controls.Add(toolBar,0,0);
         }
 
         private void BuildDevelopmentData()
@@ -70,22 +90,20 @@ namespace NotesPad
                 FullRowSelect = true,
                 Sorting = SortOrder.Ascending
             };
+            ideasListView.Columns.Add("Ideas", -2);
             ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;
 
-            ideasListView.Columns.Add("Ideas", -2);
-      
+
             _ideaDescriptionText = new TextBox {Multiline = true, Dock = DockStyle.Fill};
 
             splitContainer.Panel1.Controls.Add(ideasListView);
             splitContainer.Panel2.Controls.Add(_ideaDescriptionText);
 
-            _window.Controls.Add(splitContainer);
-
+            //_window.Controls.Add(splitContainer);
+            _outerContainer.Controls.Add(splitContainer,0,1);
             foreach (var idea in ideasCollection)
             {
                 ideasListView.Items.Add((string) idea._id.ToString(), idea.Name, null);
-
-
             }
 
             //TODO:Code in here to wire up ideas edit event 

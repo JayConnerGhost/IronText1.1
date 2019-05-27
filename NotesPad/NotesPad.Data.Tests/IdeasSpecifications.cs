@@ -109,5 +109,29 @@ namespace NotesPad.Data.Tests
             Assert.Equal(newDescription,editiedIdea.Description);
         }
 
+        [Fact]
+        public void Can_delete_a_idea()
+        {
+            //Arrange
+            Guid ideaId = Guid.Empty;
+            IIdeaRepository repository = new IdeaRepository();
+            repository.DeleteAll();
+
+            var targetIdea = new Idea()
+            {
+                _id = ideaId,
+                Name = "test Idea",
+                Description = "Test Idea"
+            };
+            repository.Save(targetIdea);
+
+            //Act
+            repository.Delete(ideaId);
+
+            //Assert
+            var result=repository.GetById(ideaId);
+            Assert.Null(result);
+        }
+
     }
 }

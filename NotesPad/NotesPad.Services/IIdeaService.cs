@@ -11,5 +11,6 @@ namespace NotesPad.Services
         void Update(Guid id, string name, string description);
         IList<Idea> GetList();
         void DeleteAll();
+        void Delete(Guid id);
     }
 }

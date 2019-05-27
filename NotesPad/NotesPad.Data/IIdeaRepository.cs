@@ -13,5 +13,6 @@ namespace NotesPad.Data
         IList<Idea> GetAll();
         void Update(Idea targetIdea);
         Idea GetById(Guid ideaId);
+        void Delete(Guid ideaId);
     }
 }

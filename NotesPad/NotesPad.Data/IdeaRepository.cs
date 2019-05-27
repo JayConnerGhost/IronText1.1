@@ -64,5 +64,10 @@ namespace NotesPad.Data
         {
            return _ideas.Find(x=> x._id==ideaId).FirstOrDefault();
         }
+
+        public void Delete(Guid ideaId)
+        {
+            _ideas.Delete(ideaId);
+        }
     }
 }

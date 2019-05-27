@@ -77,5 +77,20 @@ namespace NotesPad.Services.Tests
             repository.Received().DeleteAll();
 
         }
+
+        [Fact]
+        public void Repository_is_called_when_deleting_an_idea()
+        {
+            //Arrange
+            var id = Guid.NewGuid();
+            IIdeaRepository repository = Substitute.For<IIdeaRepository>();
+            IIdeaService service = new IdeaService(repository);
+
+            //Act
+            service.Delete(id);
+            //Assert
+            repository.Received().Delete(Arg.Any<Guid>());
+
+        }
     }
 }

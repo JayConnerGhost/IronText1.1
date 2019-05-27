@@ -13,7 +13,6 @@ namespace NotesPad.Services
             _repository = repository;
         }
 
-
         public void Add( string name, string description)
         {
             _repository.Save(new Idea() {Name = name, Description = description});
@@ -25,7 +24,6 @@ namespace NotesPad.Services
             target.Name = name;
             target.Description = description;
             _repository.Update(target);
-
         }
 
         public IList<Idea> GetList()
@@ -36,6 +34,11 @@ namespace NotesPad.Services
         public void DeleteAll()
         {
             _repository.DeleteAll();
+        }
+
+        public void Delete(Guid id)
+        {
+           _repository.Delete(id);
         }
     }
 }

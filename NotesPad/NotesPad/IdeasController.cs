@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
+using NotesPad.Objects;
 using NotesPad.Services;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -27,7 +29,28 @@ namespace NotesPad
         public void Setup()
         {
             //TODO:Code in here to get ideas 
+            var ideasCollection = _service.GetList();
             //TODO:Code in here to display Ideas Name
+            BuildIdeasComponent(ideasCollection);
+            
+        }
+
+        private void BuildIdeasComponent(IList<Idea> ideasCollection)
+        {
+            SplitContainer splitContainer = new SplitContainer
+            {
+                Orientation = Orientation.Horizontal, Dock = DockStyle.Fill
+            };
+            splitContainer.Panel1.Name = "Names";
+            splitContainer.Panel2.Name = "Description";
+
+            var ideasListView = new ListView {Dock = DockStyle.Fill};
+            var ideaText = new TextBox {Multiline = true, Dock = DockStyle.Fill};
+
+            splitContainer.Panel1.Controls.Add(ideasListView);
+            splitContainer.Panel2.Controls.Add(ideaText);
+
+            _window.Controls.Add(splitContainer);
             //TODO:Code in here to display ideas description 
             //TODO:Code in here to wire up ideas edit event 
             //TODO:Code in here to wire up ideas add event 

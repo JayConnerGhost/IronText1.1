@@ -201,6 +201,10 @@
       <Project>{EC9816C2-85FA-4998-8299-0F3533DC3029}</Project>
       <Name>NotesPad.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NotesPad.Objects\NotesPad.Objects.csproj">
+      <Project>{D6698553-B0C7-4967-AA6D-16BC09F234A3}</Project>
+      <Name>NotesPad.Objects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NotesPad.Services\NotesPad.Services.csproj">
       <Project>{740B80B1-BDA9-4520-98EA-5341D7AECAAA}</Project>
       <Name>NotesPad.Services</Name>

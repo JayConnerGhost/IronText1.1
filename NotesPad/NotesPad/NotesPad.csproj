@@ -196,5 +196,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotesPad.Data\NotesPad.Data.csproj">
+      <Project>{EC9816C2-85FA-4998-8299-0F3533DC3029}</Project>
+      <Name>NotesPad.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotesPad.Services\NotesPad.Services.csproj">
+      <Project>{740B80B1-BDA9-4520-98EA-5341D7AECAAA}</Project>
+      <Name>NotesPad.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

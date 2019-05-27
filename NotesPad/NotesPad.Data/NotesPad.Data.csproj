@@ -75,10 +75,6 @@
       <Project>{D6698553-B0C7-4967-AA6D-16BC09F234A3}</Project>
       <Name>NotesPad.Objects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NotesPad\NotesPad.csproj">
-      <Project>{D175C9B9-EAF6-4F71-8CC3-4E1A0DA4DE0F}</Project>
-      <Name>NotesPad</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

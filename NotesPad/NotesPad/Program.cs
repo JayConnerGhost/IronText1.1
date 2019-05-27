@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NotesPad.Data;
+using NotesPad.Services;
 using Unity;
 using Unity.Lifetime;
 
@@ -27,6 +29,8 @@ namespace NotesPad
         private static UnityContainer BuildContainer()
         {
            var container=new UnityContainer();
+           container.RegisterType<IIdeaRepository, IdeaRepository>(new ContainerControlledLifetimeManager());
+           container.RegisterType<IIdeaService, IdeaService>(new ContainerControlledLifetimeManager());
            container.RegisterType<IIdeasController, IdeasController>(new ContainerControlledLifetimeManager());
            container.RegisterType<IFilesController, FilesController>(new ContainerControlledLifetimeManager());
            container.RegisterType<IEditorController, EditorController>();

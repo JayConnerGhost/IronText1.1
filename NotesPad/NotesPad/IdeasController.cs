@@ -1,14 +1,20 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
+using NotesPad.Services;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
 {
-    internal class IdeasController : IIdeasController
+    public class IdeasController : IIdeasController
     {
-    
+        private readonly IIdeaService _service;
 
         private Form _window;
+
+        public IdeasController(IIdeaService service)
+        {
+            _service = service;
+        }
 
         public Form Window
         {
@@ -20,6 +26,13 @@ namespace NotesPad
 
         public void Setup()
         {
+            //TODO:Code in here to get ideas 
+            //TODO:Code in here to display Ideas Name
+            //TODO:Code in here to display ideas description 
+            //TODO:Code in here to wire up ideas edit event 
+            //TODO:Code in here to wire up ideas add event 
+            //TODO:Code in here to wire up ideas delete event 
+            //TODO:Code in here to delete all Ideas 
         }
 
         public void Show()

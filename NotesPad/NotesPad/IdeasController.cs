@@ -33,8 +33,6 @@ namespace NotesPad
         public void Setup()
         {
             //BuildDevelopmentData();//remove when no longer needed 
-            //TODO:Code in here to get ideas 
-            //TODO:change to a table layout 2 rows 
             _ideasCollection = _service.GetList();
             BuildOuterContainer();
             AddToolBar();
@@ -82,13 +80,10 @@ namespace NotesPad
 
             var ideasListView = new ListView
             {
+                Scrollable = true,
                 Dock = DockStyle.Fill,
-                GridLines = true,
                 View = View.Details,
                 CheckBoxes = true,
-                AllowColumnReorder = true,
-                FullRowSelect = true,
-                Sorting = SortOrder.Ascending
             };
             ideasListView.Columns.Add("Ideas", -2);
             ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;

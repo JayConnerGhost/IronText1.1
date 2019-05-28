@@ -61,12 +61,60 @@ namespace NotesPad
 
         private void AddToolBar()
         {
-            var toolBar = new ToolBar {Dock = DockStyle.Top,ImageList = _icons, Appearance = ToolBarAppearance.Flat, Height = 15};
-            toolBar.Buttons.Add(new ToolBarButton{ToolTipText = "Delete",ImageIndex = 0});
-            toolBar.Buttons.Add(new ToolBarButton{ToolTipText = "Add Idea", ImageIndex = 1});
-            toolBar.Buttons.Add(new ToolBarButton(){ToolTipText = "Select all", ImageIndex = 2});
-            toolBar.Buttons.Add(new ToolBarButton(){ToolTipText = "Edit idea", ImageIndex = 3});
+            var toolBar = new ToolBar
+            {
+                Dock = DockStyle.Top,
+                ImageList = _icons,
+                Appearance = ToolBarAppearance.Flat, Height = 15
+            };
+            toolBar.ButtonClick += ToolBar_ButtonClick;
+            toolBar.Buttons.Add(new ToolBarButton{ToolTipText = "Delete",ImageIndex = 0,Tag = "Delete"});
+            toolBar.Buttons.Add(new ToolBarButton{ToolTipText = "Add Idea", ImageIndex = 1, Tag="Add"});
+            toolBar.Buttons.Add(new ToolBarButton(){ToolTipText = "Select all", ImageIndex = 2,Tag="SelectAll"});
+            toolBar.Buttons.Add(new ToolBarButton(){ToolTipText = "Edit idea", ImageIndex = 3, Tag="Edit"});
            _outerContainer.Controls.Add(toolBar,0,0);
+        }
+
+        private void ToolBar_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        {
+            switch (e.Button.Tag)
+            {
+                case "Delete":
+                    DeleteIdea();
+                        
+                    break;
+                case "Add":
+                    AddIdea();
+                    break;
+                case "SelectAll":
+                    SelectAllIdeas();
+                    break;
+                case "Edit":
+                    EditIdea();
+                    break;
+            }
+
+            throw new NotImplementedException();
+        }
+
+        private void EditIdea()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SelectAllIdeas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddIdea()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteIdea()
+        {
+            throw new NotImplementedException();
         }
 
         private void BuildDevelopmentData()
@@ -102,7 +150,7 @@ namespace NotesPad
             ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;
 
 
-            _ideaDescriptionText = new TextBox {Multiline = true, Dock = DockStyle.Fill};
+            _ideaDescriptionText = new TextBox {Multiline = true,ReadOnly = true, Dock = DockStyle.Fill};
 
             splitContainer.Panel1.Controls.Add(ideasListView);
             splitContainer.Panel2.Controls.Add(_ideaDescriptionText);

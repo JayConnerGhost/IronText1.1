@@ -17,6 +17,7 @@ namespace NotesPad
         private TextBox _ideaDescriptionText;
         private TableLayoutPanel _outerContainer;
         private Form _window;
+        private ListView _ideasListView;
         private ImageList _icons=new ImageList();
         public IdeasController(IIdeaService service)
         {
@@ -94,7 +95,6 @@ namespace NotesPad
                     break;
             }
 
-            throw new NotImplementedException();
         }
 
         private void EditIdea()
@@ -104,7 +104,10 @@ namespace NotesPad
 
         private void SelectAllIdeas()
         {
-            throw new NotImplementedException();
+            foreach (var idea in _ideasListView.Items)
+            {
+                ((ListViewItem) idea).Checked = true;
+            }
         }
 
         private void AddIdea()
@@ -114,7 +117,19 @@ namespace NotesPad
 
         private void DeleteIdea()
         {
-            throw new NotImplementedException();
+            if (_ideasListView.CheckedItems.Count== 0)
+            {
+                return;
+            }
+
+            foreach (var idea in _ideasListView.CheckedItems)
+            {
+                var listViewItem = (ListViewItem) idea;
+                var workingItemName=listViewItem.Name;
+                _service.Delete(Guid.Parse(workingItemName));
+                listViewItem.Remove();
+            }
+
         }
 
         private void BuildDevelopmentData()
@@ -138,27 +153,28 @@ namespace NotesPad
             splitContainer.Panel1.Name = "Names";
             splitContainer.Panel2.Name = "Description";
 
-            var ideasListView = new ListView
+           
+            _ideasListView = new ListView
             {
                 Scrollable = true,
                 Dock = DockStyle.Fill,
                 View = View.Details,
                 CheckBoxes = true,
             };
-            ideasListView.Columns.Add("Ideas", -2);
-            ideasListView.Columns[0].Width = ideasListView.Width - 4 - SystemInformation.VerticalScrollBarWidth;
-            ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;
+            _ideasListView.Columns.Add("Ideas", -2);
+            _ideasListView.Columns[0].Width = _ideasListView.Width - 4 - SystemInformation.VerticalScrollBarWidth;
+            _ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;
 
 
             _ideaDescriptionText = new TextBox {Multiline = true,ReadOnly = true, Dock = DockStyle.Fill};
 
-            splitContainer.Panel1.Controls.Add(ideasListView);
+            splitContainer.Panel1.Controls.Add(_ideasListView);
             splitContainer.Panel2.Controls.Add(_ideaDescriptionText);
 
             _outerContainer.Controls.Add(splitContainer,0,1);
             foreach (var idea in ideasCollection)
             {
-                ideasListView.Items.Add((string) idea._id.ToString(), idea.Name, null);
+                _ideasListView.Items.Add((string) idea._id.ToString(), idea.Name, null);
             }
 
             //TODO:Code in here to wire up ideas edit event 

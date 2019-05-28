@@ -10,6 +10,22 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace NotesPad
 {
+
+    public class AddIdeaDialog : Form
+    {
+        public AddIdeaDialog()
+        {
+            Compose();
+        }
+        public void Compose()
+        {
+           
+        }
+        public void show()
+        {
+            base.ShowDialog();
+        }
+    }
     public class IdeasController : IIdeasController
     {
         private readonly IIdeaService _service;

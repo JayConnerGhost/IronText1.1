@@ -125,13 +125,22 @@
     <Content Include="icons\Custom-Icon-Design-Flatastic-8-File-explorer.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Custom-Icon-Design-Pretty-Office-7-Save.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Custom-Icon-Design-Pretty-Office-9-Open-file.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Everaldo-Kids-Icons-Edit-paste.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Hopstarter-Sleek-Xp-Basic-Close-2.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Hopstarter-Sleek-Xp-Basic-Folder-Open.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Hopstarter-Soft-Scraps-Button-Add.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Hopstarter-Soft-Scraps-Button-Close.ico">
@@ -146,10 +155,16 @@
     <Content Include="icons\icons8-document-52.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Iconsmind-Outline-Cursor-Select.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Iconsmind-Outline-Idea-2.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Mattahan-Umicons-Folder-New-Folder.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Oxygen-Icons.org-Oxygen-Actions-document-edit.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Oxygen-Icons.org-Oxygen-Actions-document-save-as.ico">

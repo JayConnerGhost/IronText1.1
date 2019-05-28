@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using NotesPad.Objects;
@@ -16,7 +17,7 @@ namespace NotesPad
         private TextBox _ideaDescriptionText;
         private TableLayoutPanel _outerContainer;
         private Form _window;
-
+        private ImageList _icons=new ImageList();
         public IdeasController(IIdeaService service)
         {
             _service = service;
@@ -34,10 +35,19 @@ namespace NotesPad
         {
             //BuildDevelopmentData();//remove when no longer needed 
             _ideasCollection = _service.GetList();
-          
+            SetupIcons();
             BuildOuterContainer();
             AddToolBar();
             BuildIdeasComponent(_ideasCollection);
+        }
+
+        private void SetupIcons()
+        {
+            var basePath = "icons/";
+            _icons.Images.Add("deleteIdea", Image.FromFile($"{basePath}Hopstarter-Sleek-Xp-Basic-Close-2.ico"));
+            _icons.Images.Add("addIdea", Image.FromFile($"{basePath}Hopstarter-Soft-Scraps-Button-Add.ico"));
+            _icons.Images.Add("checkAllIdeas", Image.FromFile($"{basePath}Iconsmind-Outline-Cursor-Select.ico"));
+            _icons.Images.Add("editIdea", Image.FromFile($"{basePath}Oxygen-Icons.org-Oxygen-Actions-document-edit.ico"));
         }
 
         private void BuildOuterContainer()

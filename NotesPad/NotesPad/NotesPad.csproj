@@ -74,14 +74,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddIdeaDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Container.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Container.Designer.cs">
       <DependentUpon>Container.cs</DependentUpon>
     </Compile>
+    <Compile Include="DialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditorController.cs" />
     <Compile Include="FilesController.cs" />
+    <Compile Include="FormInfo.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="Ideas.cs">

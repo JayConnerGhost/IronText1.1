@@ -61,10 +61,11 @@ namespace NotesPad
 
         private void AddToolBar()
         {
-            var toolBar = new ToolBar {Dock = DockStyle.Top, Appearance = ToolBarAppearance.Flat, Height = 15};
-            toolBar.Buttons.Add(new ToolBarButton("-"){ToolTipText = "Delete"});
-            toolBar.Buttons.Add(new ToolBarButton("+"){ToolTipText = "Add Idea"});
-            toolBar.Buttons.Add(new ToolBarButton("X"){ToolTipText = "Select all"});
+            var toolBar = new ToolBar {Dock = DockStyle.Top,ImageList = _icons, Appearance = ToolBarAppearance.Flat, Height = 15};
+            toolBar.Buttons.Add(new ToolBarButton{ToolTipText = "Delete",ImageIndex = 0});
+            toolBar.Buttons.Add(new ToolBarButton{ToolTipText = "Add Idea", ImageIndex = 1});
+            toolBar.Buttons.Add(new ToolBarButton(){ToolTipText = "Select all", ImageIndex = 2});
+            toolBar.Buttons.Add(new ToolBarButton(){ToolTipText = "Edit idea", ImageIndex = 3});
            _outerContainer.Controls.Add(toolBar,0,0);
         }
 

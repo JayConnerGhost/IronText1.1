@@ -29,8 +29,10 @@ namespace NotesPad
         private void SetupInitialDocking(IIdeas ideas, IFiles files, IEditor editor)
         {
             dockPanel.Theme = vS2015DarkTheme1;
-         
-            
+            dockPanel.DockLeftPortion = 225.0;
+            dockPanel.DockRightPortion = 225.0;
+
+
             ideas.Show(dockPanel, DockState.DockLeft);
 
             files.Show(dockPanel, DockState.DockLeft);

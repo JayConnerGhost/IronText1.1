@@ -34,6 +34,7 @@ namespace NotesPad
         {
             //BuildDevelopmentData();//remove when no longer needed 
             _ideasCollection = _service.GetList();
+          
             BuildOuterContainer();
             AddToolBar();
             BuildIdeasComponent(_ideasCollection);
@@ -50,10 +51,10 @@ namespace NotesPad
 
         private void AddToolBar()
         {
-            var toolBar = new ToolBar {Dock = DockStyle.Top};
-            toolBar.Appearance = ToolBarAppearance.Flat;
-            toolBar.Buttons.Add(new ToolBarButton("Delete"));
-           // Window.Controls.Add(toolBar);
+            var toolBar = new ToolBar {Dock = DockStyle.Top, Appearance = ToolBarAppearance.Flat, Height = 15};
+            toolBar.Buttons.Add(new ToolBarButton("-"){ToolTipText = "Delete"});
+            toolBar.Buttons.Add(new ToolBarButton("+"){ToolTipText = "Add Idea"});
+            toolBar.Buttons.Add(new ToolBarButton("X"){ToolTipText = "Select all"});
            _outerContainer.Controls.Add(toolBar,0,0);
         }
 
@@ -86,6 +87,7 @@ namespace NotesPad
                 CheckBoxes = true,
             };
             ideasListView.Columns.Add("Ideas", -2);
+            ideasListView.Columns[0].Width = ideasListView.Width - 4 - SystemInformation.VerticalScrollBarWidth;
             ideasListView.ItemSelectionChanged += IdeasListView_ItemSelectionChanged;
 
 
@@ -94,7 +96,6 @@ namespace NotesPad
             splitContainer.Panel1.Controls.Add(ideasListView);
             splitContainer.Panel2.Controls.Add(_ideaDescriptionText);
 
-            //_window.Controls.Add(splitContainer);
             _outerContainer.Controls.Add(splitContainer,0,1);
             foreach (var idea in ideasCollection)
             {

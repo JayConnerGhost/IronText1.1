@@ -13,9 +13,9 @@ namespace NotesPad.Services
             _repository = repository;
         }
 
-        public void Add( string name, string description)
+        public Guid Add( string name, string description)
         {
-            _repository.Save(new Idea() {Name = name, Description = description});
+           return _repository.Save(new Idea() {Name = name, Description = description});
         }
 
         public void Update(Guid id, string name, string description)

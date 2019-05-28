@@ -7,7 +7,7 @@ namespace NotesPad.Services
 {
     public interface IIdeaService
     {
-        void Add(string name, string description);
+        Guid Add(string name, string description);
         void Update(Guid id, string name, string description);
         IList<Idea> GetList();
         void DeleteAll();

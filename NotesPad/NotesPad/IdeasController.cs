@@ -112,7 +112,10 @@ namespace NotesPad
 
         private void AddIdea()
         {
-            new AddIdeaDialog().ShowDialog();
+            var (item1, item2) = new AddIdeaDialog().ShowDialog();
+            var itemId=_service.Add((string)item1, (string)item2);
+            _ideasListView.Items.Add((string)itemId.ToString(), item1, null);
+            _ideasCollection.Add(new Idea(){_id=itemId, Name=item1, Description = item2});
         }
 
         private void DeleteIdea()

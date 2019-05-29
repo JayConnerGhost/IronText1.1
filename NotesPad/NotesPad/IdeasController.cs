@@ -99,7 +99,23 @@ namespace NotesPad
 
         private void EditIdea()
         {
-            throw new NotImplementedException();
+            if (_ideasListView.SelectedItems[0] == null)
+            {
+                return;
+            }
+
+            var targetViewListItem = _ideasListView.SelectedItems[0];
+            var targetId = Guid.Parse(targetViewListItem.Name.Trim());
+            var targetIdea=_ideasCollection.Where(x => x._id == targetId).FirstOrDefault();
+            if (targetIdea == null)
+            {
+                throw new ArgumentException("Idea not found in Register");
+            }
+            var (item1,item2)=new EditIdeaDialog().ShowDialog(targetIdea.Description,targetIdea.Name);
+            _service.Update(targetId,item1,item2);
+            targetIdea.Name = item1;
+            targetIdea.Description = item2;
+            targetViewListItem.Text = item1;
         }
 
         private void SelectAllIdeas()

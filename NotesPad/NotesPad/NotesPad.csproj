@@ -86,6 +86,9 @@
     <Compile Include="DialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EditIdeaDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditorController.cs" />
     <Compile Include="FilesController.cs" />
     <Compile Include="FormInfo.cs" />

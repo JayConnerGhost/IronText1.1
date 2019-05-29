@@ -120,9 +120,20 @@ namespace NotesPad
 
         private void SelectAllIdeas()
         {
-            foreach (var idea in _ideasListView.Items)
+            if (_ideasListView.CheckedItems.Count == 0)
             {
-                ((ListViewItem) idea).Checked = true;
+                foreach (var idea in _ideasListView.Items)
+                {
+                    ((ListViewItem) idea).Checked = true;
+                }
+                
+            }
+            else
+            {
+                foreach (var idea in _ideasListView.Items)
+                {
+                    ((ListViewItem)idea).Checked = false;
+                }
             }
         }
 

@@ -99,7 +99,7 @@ namespace NotesPad
 
         private void EditIdea()
         {
-            if (_ideasListView.SelectedItems[0] == null)
+            if (_ideasListView.SelectedItems.Count == 0)
             {
                 return;
             }

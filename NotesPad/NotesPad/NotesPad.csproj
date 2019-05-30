@@ -132,6 +132,9 @@
     <Content Include="icons\Avosoft-Warm-Toolbar-Folder-open.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Custom-Icon-Design-Flatastic-2-Data-add.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Custom-Icon-Design-Flatastic-8-File-explorer.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

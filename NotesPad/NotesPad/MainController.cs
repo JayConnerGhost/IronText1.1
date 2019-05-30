@@ -99,6 +99,7 @@ namespace NotesPad
             icons.Images.Add("toolsIdeas", Image.FromFile($"{IconBasePath}Iconsmind-Outline-Idea-2.ico"));
             icons.Images.Add("toolsSpelling", Image.FromFile($"{IconBasePath}Oxygen-Icons.org-Oxygen-Actions-tools-check-spelling.ico"));
             icons.Images.Add("fileOpenFolder", Image.FromFile($"{IconBasePath}Avosoft-Warm-Toolbar-Folder-open.ico"));
+            icons.Images.Add("CopyIdeasToDocuments", Image.FromFile($"{IconBasePath}Custom-Icon-Design-Flatastic-2-Data-add.ico"));
         }
 
         private void SetupMenu(Container window)
@@ -208,9 +209,23 @@ namespace NotesPad
                 new ToolStripMenuItem("Files", null, FilesOnClick, Keys.Alt | Keys.F)
                     { Image = _icons.Images[10]};
             mnuTools.DropDownItems.Add(fileBrowserMenuItem);
-            var spellingMenuItem = new ToolStripMenuItem("Spelling",null,SpellingOnClick,Keys.Alt | Keys.S);
-            spellingMenuItem.Image = _icons.Images[12];
+            var spellingMenuItem =new ToolStripMenuItem("Spelling", null, SpellingOnClick, Keys.Alt | Keys.S) {Image = _icons.Images[12]};
+            var copyIdeasMenuItem =new ToolStripMenuItem("Ideas to Document", null, IdeasToDocumentOnClick, Keys.Alt | Keys.S) {Image = _icons.Images[14]};
             mnuTools.DropDownItems.Add(spellingMenuItem);
+            mnuTools.DropDownItems.Add(copyIdeasMenuItem);
+        }
+
+        private void IdeasToDocumentOnClick(object sender, EventArgs e)
+        {
+            var ideas=_ideasController.GetIdeas();
+           
+            var activeDocument=Window.dockPanel.ActiveDocument;
+            var editor = (Editor) activeDocument;
+            var text=(RichTextBox)editor.Controls[0];
+            foreach (var idea in ideas)
+            {
+                text.Text = text.Text + idea.Description + Environment.NewLine;
+            }
         }
 
         private void SpellingOnClick(object sender, EventArgs e)

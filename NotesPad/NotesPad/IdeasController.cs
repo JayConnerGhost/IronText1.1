@@ -234,5 +234,10 @@ namespace NotesPad
 
             ((DockContent)this._window).Show(DockingArea,DockState.DockLeft);
         }
+
+        public IList<Idea> GetIdeas()
+        {
+            return _ideasCollection;
+        }
     }
 }

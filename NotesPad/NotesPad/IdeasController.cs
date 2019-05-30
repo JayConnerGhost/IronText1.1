@@ -161,6 +161,8 @@ namespace NotesPad
                 var listViewItem = (ListViewItem) idea;
                 var workingItemName=listViewItem.Name;
                 _service.Delete(Guid.Parse(workingItemName));
+                var ideaFromCollection = _ideasCollection.First(x => x._id == Guid.Parse(workingItemName));
+                _ideasCollection.Remove(ideaFromCollection);
                 listViewItem.Remove();
             }
 

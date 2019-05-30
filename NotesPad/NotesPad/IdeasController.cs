@@ -213,10 +213,6 @@ namespace NotesPad
                 _ideasListView.Items.Add((string) idea._id.ToString(), idea.Name, null);
             }
 
-            //TODO:Code in here to wire up ideas edit event 
-            //TODO:Code in here to wire up ideas add event 
-            //TODO:Code in here to wire up ideas delete event 
-            //TODO:Code in here to delete all Ideas 
         }
 
         private void IdeasListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)

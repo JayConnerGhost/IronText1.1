@@ -8,5 +8,6 @@ namespace NotesPad
         void SpellCheck();
         void Save();
         void OpenFile(string path, string fileName);
+        void SelectAllText();
     }
 }

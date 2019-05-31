@@ -111,11 +111,30 @@ namespace NotesPad
             var mnuTools = new ToolStripMenuItem("Tools");
             SetupToolsMenu(mnuTools);
             SetupFileMenu(mnuFile);
+            SetupEditMenu(mnuEdit);
             window.MenuStrip.ImageList = _icons;
             window.MenuStrip.Items.Add(mnuFile);
             window.MenuStrip.Items.Add(mnuEdit);
             window.MenuStrip.Items.Add(mnuView);
             window.MenuStrip.Items.Add(mnuTools);
+        }
+
+        private void SetupEditMenu(ToolStripMenuItem mnuEdit)
+        {
+            var selectAllMenuItem = new ToolStripMenuItem("Select All", null, SelectAllEditOnClick, Keys.Alt | Keys.A)
+            {
+                Image = _icons.Images[9]
+            };
+            mnuEdit.DropDownItems.Add(selectAllMenuItem);
+        }
+
+        private void SelectAllEditOnClick(object sender, EventArgs e)
+        {
+            //TODO : get active document 
+            var activeDocument = Window.dockPanel.ActiveDocument;
+            var editor = (Editor) activeDocument;
+            editor.Controller.SelectAllText();
+            //TODO: Write method Selectall
         }
 
         private void SetupFileMenu(ToolStripMenuItem mnuFile)

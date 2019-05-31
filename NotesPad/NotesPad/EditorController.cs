@@ -10,6 +10,7 @@ namespace NotesPad
 {
     internal class EditorController : IEditorController
     {
+        //TODO: cut, copy, paste, select all
         private Form _window;
         internal Spelling SpellChecker;
         public Form Window
@@ -81,6 +82,18 @@ namespace NotesPad
             {
                 target.LoadFile(path, RichTextBoxStreamType.PlainText);
             }
+        }
+
+        public void SelectAllText()
+        {
+            var richText=(RichTextBox) Window.Controls[0];
+            if (string.IsNullOrEmpty(richText.Text))
+            {
+                return;
+            }
+
+            richText.SelectAll();
+
         }
 
         private void AddSpellingSupport()

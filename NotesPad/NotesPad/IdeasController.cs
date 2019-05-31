@@ -12,6 +12,7 @@ namespace NotesPad
 {
     public class IdeasController : IIdeasController
     {
+        
         private readonly IIdeaService _service;
         private IList<Idea> _ideasCollection;
         private TextBox _ideaDescriptionText;

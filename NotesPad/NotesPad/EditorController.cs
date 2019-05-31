@@ -93,7 +93,17 @@ namespace NotesPad
             }
 
             richText.SelectAll();
+        }
 
+        public void Cut()
+        {
+
+            var richText = (RichTextBox)Window.Controls[0];
+            if (string.IsNullOrEmpty(richText.SelectedText))
+            {
+                return;
+            }
+            richText.Cut();
         }
 
         private void AddSpellingSupport()

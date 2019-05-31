@@ -126,15 +126,26 @@ namespace NotesPad
                 Image = _icons.Images[9]
             };
             mnuEdit.DropDownItems.Add(selectAllMenuItem);
+            var cutMenuItem = new ToolStripMenuItem("Cut", null, CutEditOnClick, Keys.Alt | Keys.U)
+            {
+                Image = _icons.Images[7]
+            };
+            mnuEdit.DropDownItems.Add(cutMenuItem);
+
+        }
+
+        private void CutEditOnClick(object sender, EventArgs e)
+        {
+            var activeDocument = Window.dockPanel.ActiveDocument;
+            var editor = (Editor)activeDocument;
+            editor.Controller.Cut();
         }
 
         private void SelectAllEditOnClick(object sender, EventArgs e)
         {
-            //TODO : get active document 
             var activeDocument = Window.dockPanel.ActiveDocument;
             var editor = (Editor) activeDocument;
             editor.Controller.SelectAllText();
-            //TODO: Write method Selectall
         }
 
         private void SetupFileMenu(ToolStripMenuItem mnuFile)

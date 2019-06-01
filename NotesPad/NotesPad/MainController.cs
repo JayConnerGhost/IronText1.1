@@ -131,7 +131,12 @@ namespace NotesPad
                 Image = _icons.Images[7]
             };
             mnuEdit.DropDownItems.Add(cutMenuItem);
-            var copyMenuItems=new ToolStripMenuItem("Copy",null,CopyEditOnClick,Keys.Alt | Keys.C);
+            var copyMenuItems = new ToolStripMenuItem("Copy", null, CopyEditOnClick, Keys.Alt | Keys.C)
+            {
+                Image = _icons.Images[8]
+            };
+            mnuEdit.DropDownItems.Add(copyMenuItems);
+
         }
 
         private void CopyEditOnClick(object sender, EventArgs e)

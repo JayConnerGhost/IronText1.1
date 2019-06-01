@@ -11,5 +11,6 @@ namespace NotesPad
         void SelectAllText();
         void Cut();
         void Copy();
+        void Paste();
     }
 }

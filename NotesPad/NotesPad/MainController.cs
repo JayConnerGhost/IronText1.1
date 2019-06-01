@@ -128,7 +128,7 @@ namespace NotesPad
             mnuEdit.DropDownItems.Add(selectAllMenuItem);
             var cutMenuItem = new ToolStripMenuItem("Cut", null, CutEditOnClick, Keys.Alt | Keys.U)
             {
-                Image = _icons.Images[7]
+                Image = _icons.Images[6]
             };
             mnuEdit.DropDownItems.Add(cutMenuItem);
             var copyMenuItems = new ToolStripMenuItem("Copy", null, CopyEditOnClick, Keys.Alt | Keys.C)
@@ -136,7 +136,18 @@ namespace NotesPad
                 Image = _icons.Images[8]
             };
             mnuEdit.DropDownItems.Add(copyMenuItems);
+            var pasteMenuItems = new ToolStripMenuItem("Paste", null, PasteEditOnClick, Keys.Alt | Keys.P)
+            {
+                Image=_icons.Images[7]
+            };
+            mnuEdit.DropDownItems.Add(pasteMenuItems);
+        }
 
+        private void PasteEditOnClick(object sender, EventArgs e)
+        {
+            var activeDocument = Window.dockPanel.ActiveDocument;
+            var editor = (Editor)activeDocument;
+            editor.Controller.Paste();
         }
 
         private void CopyEditOnClick(object sender, EventArgs e)

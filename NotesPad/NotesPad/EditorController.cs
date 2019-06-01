@@ -116,6 +116,16 @@ namespace NotesPad
             richText.Copy();
         }
 
+        public void Paste()
+        {
+            var richText = (RichTextBox)Window.Controls[0];
+            if (string.IsNullOrEmpty(richText.SelectedText))
+            {
+                return;
+            }
+            richText.Paste();
+        }
+
         private void AddSpellingSupport()
         {
             //http://www.loresoft.com/The-NetSpell-project

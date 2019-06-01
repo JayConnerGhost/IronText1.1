@@ -10,5 +10,6 @@ namespace NotesPad
         void OpenFile(string path, string fileName);
         void SelectAllText();
         void Cut();
+        void Copy();
     }
 }

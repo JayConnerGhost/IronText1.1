@@ -263,7 +263,7 @@ namespace NotesPad
                     { Image = _icons.Images[10]};
             mnuTools.DropDownItems.Add(fileBrowserMenuItem);
             var spellingMenuItem =new ToolStripMenuItem("Spelling", null, SpellingOnClick, Keys.Alt | Keys.S) {Image = _icons.Images[12]};
-            var copyIdeasMenuItem =new ToolStripMenuItem("Ideas to Document", null, IdeasToDocumentOnClick, Keys.Alt | Keys.S) {Image = _icons.Images[14]};
+            var copyIdeasMenuItem =new ToolStripMenuItem("Ideas to Document", null, IdeasToDocumentOnClick, Keys.Alt | Keys.D) {Image = _icons.Images[14]};
             mnuTools.DropDownItems.Add(spellingMenuItem);
             mnuTools.DropDownItems.Add(copyIdeasMenuItem);
         }

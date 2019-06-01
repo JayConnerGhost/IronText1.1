@@ -119,10 +119,6 @@ namespace NotesPad
         public void Paste()
         {
             var richText = (RichTextBox)Window.Controls[0];
-            if (string.IsNullOrEmpty(richText.SelectedText))
-            {
-                return;
-            }
             richText.Paste();
         }
 

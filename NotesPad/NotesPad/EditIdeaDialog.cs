@@ -10,7 +10,7 @@ namespace NotesPad
             TextBox name = new TextBox() { Width = 460, Height = 20, TabIndex = 0, TabStop = true, Multiline = false, Text=currentName };
             TextBox description = new TextBox() { Width = 460, Height = 350, TabIndex = 0, TabStop = true, Multiline = true, Text=currentDescription };
 
-            using (var form = new DialogForm(new FormInfo("Add Idea", 485, 500)))
+            using (var form = new DialogForm(new FormInfo("Edit Idea", 485, 500)))
             {
                 Label nameLabel = new Label() { Top = 4, Left = 4, Height = 15, Text = "Name" };
                 name.Top = 20;
